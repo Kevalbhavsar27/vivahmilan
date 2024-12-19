@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php 
-include("connection.php")?>
+include("connection.php");?>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
@@ -37,7 +37,11 @@ include("connection.php")?>
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
-  </head>
+
+    <!--BEGIN  Fa Fa Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- END Fa Fa Link-->
+</head>
   <!-- END: Head-->
 
   <!-- BEGIN: Body-->
@@ -51,10 +55,6 @@ include("connection.php")?>
     <!-- BEGIN: Main Menu-->
         <?php include_once 'sidebar.php';?>
     <!-- END: Main Menu-->
-
-    <!--BEGIN  Fa Fa Link-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- END Fa Fa Link-->
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -88,45 +88,40 @@ include("connection.php")?>
                   </h4>
                 </div>
                 <div class="card-body card-dashboard">
-                
+
                   <div class="table-responsive">
+                    <form method="POST">
                     <table class="table table-striped dataex-html5-selectors">
                       <thead>
                         <tr>
-                          <th>sub_community_id</th>
-                          <th>community_id</th>
                           <th>Name</th>
-                          <th>status</th>
+                          <th>Position</th>
+                          <th>Office</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <?php
-                         $query="select * from tbl_sub_community";
-                         $data= mysqli_query($conn, $query) or die(mysqli_error($conn));
-                            while($row=mysqli_fetch_array($data))
-                            {
-                        ?>
-                        <tr>
-                            <td><?php echo $row['Sub_Community_ID'] ?></td>
-                            <td><?php echo $row['Community_ID'] ?></td>
-                            <td><?php echo $row['Sub_Community_Name'] ?></td>
-                            <td><?php echo $row['Sub_Community_Status'] ?></td>
-                            <td><a onclick="return confirm('Are You Sure you want to delete?')" href="sub-community_delete.php?sid=<?php echo $row['Sub_Community_ID'];?>"><i class="fa fa-trash-o" style="font-size:20px;color:black"></i></a></td>
-                            <!-- <td>
-                                <span class="custom-control custom-swtich">
-                                    <input type="checkbox" class="custom-control-input" id="packageSwtich_"<?php echo $row['Sub_Community_ID']; ?>
-                                    <?php if($row['Sub_Community_Status']== '1'){ echo 'checked'; }?>
-                                    onClick="toggleStatus { <?php echo $row['Sub_Community_ID'];?>)">
-                                    <label class="custom-control-label" for="packageSwitch_<?php echo $row['Sub_Community_ID'];?>"></label></label>
-                                </span>
-                            </td> -->
-                            </tr>
-                        <?php
-                             }
-                         ?>
+                        <?php 
+                          $query="select * from tbl_community";
+                          $display= mysqli_query($conn, $query) or die(mysqli_error($conn));
+                          while ($row=mysqli_fetch_array($display)){
+                          ?>
+                          <tr>
+                            <td><?php echo $row['Community_ID'];?></td>
+                            <td><?php echo $row['Community_Name'];?></td>
+                            <td><?php echo $row['Community_Status'];?></td>
+                            <td><a onclick="return confirm('Are You Sure you want to delete?')" href="delete_communitylist.php?cid=<?php echo $row['Community_ID'];?>"><i class="fa fa-trash-o" style="font-size:20px;color:black"></i></a>  |  
+                            <a href="community_add.php?ID=<?php echo $row['Community_ID'];?>"><i class="fa fa-edit" style="font-size:20px;color:black"></i></a></td>
+                          </tr>
+                          <?php } ?>
                       </tfoot>
+                     
                     </table>
+
+                  
+
+                    </form>
+                   
                   </div>
                 </div>
               </div>
