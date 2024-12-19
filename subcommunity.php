@@ -78,7 +78,7 @@ include("connection.php");
               if(isset($_POST['submit']))
               {
                     $status=1;
-                    $str="insert into sub_community values(NULL,'".$_POST['name']."','".$status."')";
+                    $str="insert into tbl_sub_community values(NULL,'".$_POST['Community_Id']."','".$_POST['Sub_Community_Name']."','".$status."')";
                     $success=mysqli_query($conn,$str);
               }
         ?>
