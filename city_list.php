@@ -57,14 +57,12 @@ include("connection.php")?>
         <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
             <div class="breadcrumbs-top">
-              <h5 class="content-header-title float-left pr-1 mb-0">Form Validation</h5>
+              <h5 class="content-header-title float-left pr-1 mb-0">Citys</h5>
               <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                  <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                  <li class="breadcrumb-item"><a href="dashboard-ecommerce.php"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Forms</a>
-                  </li>
-                  <li class="breadcrumb-item active">Form Validation
+                  <li class="breadcrumb-item"><a href="city_list.php">citys</a>
                   </li>
                 </ol>
               </div>
@@ -73,48 +71,59 @@ include("connection.php")?>
         </div>
         <div class="content-body"><!-- Simple Validation start -->
         <section id="column-selectors">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h4 class="card-title">
-                  Community-list
-                  </h4>
-                </div>
-                <div class="card-body card-dashboard">
-                
-                  <div class="table-responsive">
-                    <table class="table table-striped dataex-html5-selectors">
-                      <thead>
-                        <tr>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">
+          <a href="city_add.php"><button type="submit" class="btn btn-primary" name="submit" value="Submit">+ Add-City Lists</button></a><br><br>
+            City Lists
+          </h4>
+        </div>
+        <div class="card-body card-dashboard">
+          <div class="table-responsive">
+            <div id="DataTables_Table_4_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="dt-buttons btn-group flex-wrap">      <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="DataTables_Table_4" type="button"><span>Copy</span></button> <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="DataTables_Table_4" type="button"><span>PDF</span></button> <button class="btn btn-secondary" tabindex="0" aria-controls="DataTables_Table_4" type="button"><span>JSON</span></button> <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="DataTables_Table_4" type="button"><span>Print</span></button> </div><div id="DataTables_Table_4_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="DataTables_Table_4"></label></div><table class="table table-striped dataex-html5-selectors dataTable" id="DataTables_Table_4" role="grid" aria-describedby="DataTables_Table_4_info">
+              <thead>
+                <tr role="row">
+              </thead>
+              <tbody>
+              <tr role="row" class="odd">
+              <tr>
                           <th>City_ID</th>
                           <th>City_Name</th>
                           <th>State_ID</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php 
-                          $query="select * from tbl_city";
+                          <th>Status</th>
+              </tr>
+                </tr></tbody>
+              <tfoot>
+              <?php 
+                          $query="select * from cities";
                           $display= mysqli_query($conn, $query) or die(mysqli_error($conn));
                           while ($row=mysqli_fetch_array($display)){
                           ?>
                           <tr>
-                            <td><?php echo $row['City_ID'];?></td> 
-                            <td><?php echo $row['City_Name'];?></td>
-                            <td><?php echo $row['State_ID'];?></td>
+                            <td><?php echo $row['id'];?></td> 
+                            <td><?php echo $row['city'];?></td>
+                            <td><?php echo $row['state_id'];?></td>
+                            <td>
+                              <span class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input"
+                                id="citySwitch<?php echo $row['id']; ?>"
+                                <?php if($row['status'] == '1') { echo 'checked'; } ?>
+                                onclick="toggleStatus( <?php echo $row['id']; ?> )">
+                                <label class="custom-control-label" for="citySwitch<?php echo $row['id']; ?>"></label>
+                              </span>
+                            </td>
                           </tr>
                           <?php } ?>
-                      </tfoot>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
+              </tfoot>
+            </table><div class="dataTables_info" id="DataTables_Table_4_info" role="status" aria-live="polite">Showing 1 to 10 of 27 entries</div><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_4_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_4_previous"><a href="#" aria-controls="DataTables_Table_4" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_4" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_4" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_4" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item next" id="DataTables_Table_4_next"><a href="#" aria-controls="DataTables_Table_4" data-dt-idx="4" tabindex="0" class="page-link">Next</a></li></ul></div></div>
           </div>
-        </section>
-
         </div>
+      </div>
+    </div>
+  </div>
+</section>
       </div>
     </div>
     <!-- END: Content-->
@@ -417,7 +426,29 @@ include("connection.php")?>
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/datatables/datatable.min.js"></script>
-
+    <script>
+	
+  function toggleStatus(p_id)
+  {
+      $.ajax({
+        url: "status.php",
+        type: "POST",
+        data: { c_id: p_id },
+        success: function(result){
+          if(result == 1){
+            alert("Status set to active");
+          }
+          else{
+            alert("Status set to inactive");
+          }
+        }
+    })
+  }
+  
+  $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
+});
+</script>
   </body>
   <!-- END: Body-->
 

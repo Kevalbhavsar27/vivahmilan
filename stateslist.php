@@ -9,7 +9,7 @@ include("connection.php")?>
     <meta name="description" content="Frest admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Frest admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>DataTables - Frest - Bootstrap HTML admin template</title>
+    <title>States</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.html">
     <link rel="shortcut icon" type="image/x-icon" href="https://www.pixinvent.com/demo/frest-clean-bootstrap-admin-dashboard-template/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,600%7CIBM+Plex+Sans:300,400,500,600,700" rel="stylesheet">
@@ -59,14 +59,12 @@ include("connection.php")?>
         <div class="content-header row">
           <div class="content-header-left col-12 mb-2 mt-1">
             <div class="breadcrumbs-top">
-              <h5 class="content-header-title float-left pr-1 mb-0">Form Validation</h5>
+              <h5 class="content-header-title float-left pr-1 mb-0">States</h5>
               <div class="breadcrumb-wrapper d-none d-sm-block">
                 <ol class="breadcrumb p-0 mb-0 pl-1">
-                  <li class="breadcrumb-item"><a href="index.html"><i class="bx bx-home-alt"></i></a>
+                  <li class="breadcrumb-item"><a href="dashboard-ecommerce.php"><i class="bx bx-home-alt"></i></a>
                   </li>
-                  <li class="breadcrumb-item"><a href="#">Forms</a>
-                  </li>
-                  <li class="breadcrumb-item active">Form Validation
+                  <li class="breadcrumb-item"><a href="stateslist.php">States</a>
                   </li>
                 </ol>
               </div>
@@ -80,7 +78,8 @@ include("connection.php")?>
               <div class="card">
                 <div class="card-header">
                   <h4 class="card-title">
-                  Community-list
+                  <a href="states.php"><button type="submit" class="btn btn-primary" name="submit" value="Submit">+ Add-States-list</button></a><br><br>
+                  States-list
                   </h4>
                 </div>
                 <div class="card-body card-dashboard">
@@ -89,20 +88,29 @@ include("connection.php")?>
                     <table class="table table-striped dataex-html5-selectors">
                       <thead>
                         <tr>
-                          <th>Faq_ID</th>
-                          <th>Faq_Que</th>
-                          
+                          <th>State_ID</th>
+                          <th>State_Name</th>
+                          <th>Status</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-                          $query="select * from tbl_state";
+                          $query="select * from states";
                           $display= mysqli_query($conn, $query) or die(mysqli_error($conn));
                           while ($row=mysqli_fetch_array($display)){
                           ?>
                           <tr>
-                            <td><?php echo $row['State_ID'];?></td>
-                            <td><?php echo $row['State_Name'];?></td>
+                            <td><?php echo $row['id'];?></td>
+                            <td><?php echo $row['name'];?></td>
+                            <td>
+                              <span class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input"
+                                id="stateSwitch<?php echo $row['id']; ?>"
+                                <?php if($row['status'] == '1') { echo 'checked'; } ?>
+                                onclick="toggleStatus( <?php echo $row['id']; ?> )">
+                                <label class="custom-control-label" for="stateSwitch<?php echo $row['id']; ?>"></label>
+                              </span>
+                            </td>
                           </tr>
                           <?php } ?>
                       </tfoot>
@@ -357,7 +365,29 @@ include("connection.php")?>
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/datatables/datatable.min.js"></script>
-
+    <script>
+	
+  function toggleStatus(p_id)
+  {
+      $.ajax({
+        url: "status.php",
+        type: "POST",
+        data: { s_id: p_id },
+        success: function(result){
+          if(result == 1){
+            alert("Status set to active");
+          }
+          else{
+            alert("Status set to inactive");
+          }
+        }
+    })
+  }
+  
+  $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+    $("#success-alert").slideUp(500);
+});
+</script>
   </body>
   <!-- END: Body-->
 

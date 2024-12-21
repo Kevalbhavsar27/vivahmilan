@@ -76,7 +76,7 @@
               if(isset($_POST['submit']))
               {
                     
-                    $str="insert into tbl_state values(NULL,'".$_POST['name']."')";
+                    $str="insert into states values(NULL,'".$_POST['name']."')";
                     $success=mysqli_query($conn,$str);
               }
         ?>
