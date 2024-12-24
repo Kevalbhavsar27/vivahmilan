@@ -201,7 +201,7 @@
 	#state status start here
 if(isset($_POST['s_id']))
 	{
-		$td_id = $_POST['c_id'];
+		$td_id = $_POST['s_id'];
 		$str_degree = "select * from states WHERE id =$td_id";
 		$result_degree = mysqli_query($conn, $str_degree);
 		$row_degree = mysqli_fetch_array($result_degree);
