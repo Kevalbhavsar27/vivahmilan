@@ -82,7 +82,7 @@
  <?php
   if(isset($_POST['sbtn']))
  {  
-    $qry="select * from admin_tbl where admin_email='".$_POST['eid']."'";
+    $qry="select * from tbl_admin where Admin_Email='".$_POST['eid']."'";
     //echo $qry;die;
      $result=mysqli_query($conn,$qry);
      if(mysqli_num_rows($result)>0)
@@ -97,7 +97,7 @@
         require 'PHPMailer/class.phpmailer.php';
        // require 'PHPMailer/class.smtp.php';
         $data=mysqli_fetch_array($result);
-        $_SESSION['user_name_data']=$data['admin_name'];
+        $_SESSION['user_name_data']=$data['Admin_Name'];
         $otp=rand(100000,999999);
         $_SESSION['random_otp']=$otp;
         //$to_id = $_POST['toid'];
@@ -156,15 +156,15 @@
             $mail -> SMTPAuth = true;
             $mail->CharSet = "UTF-8";
             $mail->Port = 587;
-            $mail->Username   = 'priyankadreamclass@gmail.com';
-            $mail->Password   = 'oyctpeyaxujyqtxe';
+            $mail->Username   = 'vivaahmilan123@gmail.com';
+            $mail->Password   = 'cqtebwsyvwpyrzkv';
             $mail->FromName = $setfrom;
             $mail->addAddress($uid);
             $mail->Subject = $subject;
             $mail->msgHTML($message);
             if($mail->send())
             {
-                $str="insert into otp_tbl values(NULL,'".$otp."','".$status."','".$time."')";
+                $str="insert into otp_status values(NULL,'".$otp."','".$status."','".$time."')";
                 //echo $str;die;
                 $success=mysqli_query($conn,$str);
                
