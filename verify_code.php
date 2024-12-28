@@ -69,7 +69,7 @@ session_start();
  {  
   //echo "sds";die;
     $code=$_POST['a'].$_POST['b'].$_POST['c'].$_POST['d'].$_POST['e'].$_POST['f'];
-    $qry="select * from otp_tbl where otp_code='".$code."'";
+    $qry="select * from otp_status where otp='".$code."'";
    //echo $qry;die;
      $result=mysqli_query($conn,$qry);
      $data=mysqli_fetch_array($result);
@@ -78,7 +78,7 @@ session_start();
      if(mysqli_num_rows($result)>0)
      {
         //echo "hii";die;
-        if(time()-$data['otp_time']<100)
+        if(time()-$data['create_at']<100)
         {
           //echo "hii";die;
          header("location:set_password.php");
@@ -159,14 +159,14 @@ session_start();
         </div>
         <!-- /Logo -->
           <?php 
-            $qry="select * from admin_tbl";
+            $qry="select * from tbl_admin";
             $test=mysqli_query($conn,$qry);
             $result=mysqli_fetch_array($test);
           ?>
         <h4 class="mb-2">Enter Verification Code</h4>
         <p class="text-start mb-4">
           We sent a verification code to your mail.Enter the code from the email in the field below.
-          <span class="fw-bold d-block mt-2"><?php echo $result['admin_email'] ?></span>
+          <span class="fw-bold d-block mt-2"><?php echo $result['Admin_Email'] ?></span>
         </p>
         <p class="mb-0 fw-semibold">Type your 6 digit security code</p>
         <form id="twoStepsForm" method="POST" class="mb-2">

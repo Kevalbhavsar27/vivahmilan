@@ -77,7 +77,7 @@ session_start();
     if ($_POST['pwd']==$_POST['cpwd'])  
     {
     $mail=$_SESSION['admin_mail'];
-    $str="update admin_tbl set admin_password= '".$_POST['cpwd']."' where admin_email='".$mail."'";
+    $str="update tbl_admin set Admin_Password= '".$_POST['cpwd']."' where admin_email='".$mail."'";
     //echo $str;die;
     mysqli_query($conn,$str);
    // die;
@@ -155,12 +155,12 @@ session_start();
           </div>
           <!-- /Logo -->
            <?php 
-            $qry="select * from admin_tbl";
+            $qry="select * from tbl_admin";
             $test=mysqli_query($conn,$qry);
             $result=mysqli_fetch_array($test);
           ?>
           <h4 class="mb-2">Reset Password 🔒</h4>
-          <p class="mb-4">for <span class="fw-bold"><?php echo $result['admin_email'] ?></span></p>
+          <p class="mb-4">for <span class="fw-bold"><?php echo $result['Admin_Email'] ?></span></p>
           <form id="custom_val" class="mb-3" method="POST">
             <div class="mb-3 form-password-toggle">
               <label class="form-label" for="password">New Password</label>
