@@ -1,44 +1,61 @@
-<?php
-	include_once 'connection.php';
-	if(isset($_post['btn-Submit']))	
+<?php	
+	$conn=mysqli_connect('127.0.0.1','root','','uday');	
+	if(isset($_POST['BtnInsert']))
 	{
-		echo "<pre>";
-		print_r($_FILES);
-		di;
-		move_uploaded_file($_FILES['profile']['emp_name'],"images/".$_FILES['Profile']['name']);
-		$img=$_FILES['profile']['name'];
-		$str="insert into emp values('".$_POST['emp_name']."','".$_POST['emp_mail']."','".$_POST['emp_pwd']."')";
-		mysqli_query($con,$str);
-		echo "<h1>Success</h1>";
+		$sql="insert into test1 values(NULL,'".$_POST['fname']."','".$_POST['lname']."','".$_POST['age']."','".$_POST['email']."','".$_POST['password']."','".$_POST['date']."','".$_POST['profile']."')";
+		$success=mysqli_query($conn,$sql);
 	}
 ?>
 <html>
-	<body style="background-color:yellow">	
-		<h1>Employee Details</h1>
-		<form method="POST" enctype="multipart	/form-data">
-			<table>
-				<tr>
-					<th>Name</th>
-					<td><input type="text" name="emp_name"></td>
-				</tr>
-				<tr>
-					<th>Email</th>
-					<td><input type="text" name="emp_mail"></td>
-				</tr>
-				<tr>
-					<th>Password</th>
-					<td><input type="text" name="emp_pwd"></td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>	
-						<input type="submit" name="btn-submit" value="sign-up">
-						<input type="button" name="btn-update" value="Update">
-						<input type="button" name="btn-delete" value="Delete">	
-					</td>
-				</tr>
-			</table>
+	<head>
+		<link rel="stylesheet" href="bootstrap.min.css">
+	</head>
+	<body class="bg-light">
+	<center>
+		<h1 style="color:blue" class="bg-light">Welcome To Register Page</h1>
+	</center>
+		<ul class="nav nav-tabs">
+			<li class="bg-dark"><a href="show.php">Show Records</a></li>
+		</ul><br>
+		<center>
+			<?php if (isset($success)) { ?>
+				<div class="alert alert-success">
+					Register Successfully...
+				</div>
+		<?php } ?>
+		</center>
+		<form method="POST">
+			<div class="container mt-4">
+				<div>
+					<label>First Name</label>
+					<input type="text" name="fname" class="form-control">
+				</div>
+				<div>
+					<label>Last Name</label>
+					<input type="text" name="lname" class="form-control">
+				</div>
+				<div>
+					<label>Age</label>
+					<input type="text" name="age" class="form-control">
+				</div>
+				<div>
+					<label>Email</label>
+					<input type="text" name="email" class="form-control">
+				</div>
+				<div>
+					<label>Password</label>
+					<input type="password" name="password" class="form-control">
+				</div>
+				<div>
+					<label>Date</label>
+					<input type="date" name="date" class="form-control">
+				</div>
+				<div>
+					<label>Profile</label>
+					<input type="file" name="profile" class="form-control">
+				</div><br>
+				<input type="submit" name="BtnInsert" class="btn btn-outline-dark">
+				</div>
 		</form>
-			<a href="login.php">Login here</a>
-		</body>
-	</html>
+	</body>
+</html>
