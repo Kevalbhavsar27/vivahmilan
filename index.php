@@ -17,10 +17,17 @@
         $str="select * from tbl_admin where Admin_Email = '".$_POST['email_Id']."' and Admin_Password = '".$_POST['Pass_word']."'";
         $data=mysqli_query($conn,$str);
         $row=mysqli_num_rows($data);
+        $result=mysqli_fetch_array($data);
         if($row>0)
         {
-            $_SESSION['auser']=$_POST['aname'];
-            header('location:dashboard-ecommerce.php');
+            $_SESSION['auser']=$result['aname'];
+            $_SESSION["ID"] = $result['Admin_ID'];
+            $_SESSION["nm"] = $result['Admin_Name'];
+            $_SESSION["em"] = $result['Admin_Email'];
+            $_SESSION["pw"] = $result['Admin_Password'];
+            $_SESSION["con"] = $result['Admin_Contact'];
+            $_SESSION["ct"] = $result['Admin_City'];
+            header('location:dashboard.php');
         }
     }
     
@@ -104,13 +111,7 @@
                                 </div>
                             </div>
                             <form  method="POST">
-                         <?php $_SESSION["ID"] = $_POST['Admin_ID'];
-                                    $_SESSION["nm"] = $_POST['Admin_Name'];
-                                    $_SESSION["em"] = $_POST['Admin_Email'];
-                                    $_SESSION["pw"] = $_POST['Admin_Password'];
-                                    $_SESSION["con"] = $_POST['Admin_Contact'];
-                                    $_SESSION["ct"] = $_POST['Admin_City'];
-                              ?>  
+                         
                               <div class="form-group mb-50">
                                     <label class="text-bold-600" for="exampleInputEmail1">Email address</label>
                                     <input type="email" class="form-control" id="exampleInputEmail1"
@@ -132,7 +133,7 @@
                                     <div class="text-right"><a href="forgot_password.php"
                                             class="card-link"><small>Forgot Password?</small></a></div>
                                 </div>
-                                <button type="submit"  name="btnlogin" class="btn btn-primary glow w-100 position-relative" href="page-user-profile.php?ID=<?php echo $_SESSION["ID"];?>Login<i
+                                <button type="submit"  name="btnlogin" class="btn btn-primary glow w-100 position-relative" href="page-user-profile.php?ID=<?php echo $_SESSION["ID"];?>">Login<i
                                         id="icon-arrow" class="bx bx-right-arrow-alt"></i></button>
                             </form>
                             <hr>
