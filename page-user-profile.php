@@ -213,7 +213,7 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation" data-icon-style="">
-          <li class=" nav-item"><a href="dashboard-ecommerce.php"><i class='bx bxs-dashboard'></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a>
+          <li class=" nav-item"><a href="dashboard.php"><i class='bx bxs-dashboard'></i><span class="menu-title text-truncate" data-i18n="Dashboard">Dashboard</span></a>
           </li>
           <li class=" nav-item"><a href="#"><i class="bx bx-file"></i><span class="menu-title text-truncate" data-i18n="Invoice">Community</span></a>
             <ul class="menu-content">
@@ -393,7 +393,7 @@
                   $ct=$_SESSION["ct"];
                   $str="update tbl_admin set Admin_Name ='".$nm."' , Admin_Email ='".$em."' , Admin_Password ='".$pw."',Admin_Contact ='".$con."',Admin_City ='".$ct."' where Admin_ID =".$ID;
                   mysqli_query($conn,$str);
-                  header('location:dashboard-ecommerce.php');
+                  header('location:dashboard.php');
 
                 }
             }
@@ -413,23 +413,23 @@
 			<div class="container mt-4">
 				<div>
 					<label>Admin Name</label>
-					<input type="text" name="Admin_Name" class="form-control" value="<?php echo $nm;?>">
+					<input type="text" name="Admin_Name" class="form-control" value="<?php echo $_SESSION["nm"];?>">
 				</div>
 				<div>
 					<label>EmailID</label>
-					<input type="text" name="Admin_Email" class="form-control" value="<?php echo $em;?>">
+					<input type="text" name="Admin_Email" class="form-control" value="<?php echo $_SESSION["em"];?>">
 				</div>
 				<div>
 					<label>Password</label>
-					<input type="text" name="Admin_Password" class="form-control" value="<?php echo $pw;?>">
+					<input type="text" name="Admin_Password" class="form-control" value="<?php echo $_SESSION["pw"];?>">
 				</div>
 				<div>
 					<label>Contact</label>
-					<input type="text" name="Admin_Contact" class="form-control" value="<?php echo $con;?>">
+					<input type="text" name="Admin_Contact" class="form-control" value="<?php echo $_SESSION["con"];?>">
 				</div>
 				<div>
 					<label>City</label>
-					<input type="text" name="Admin_City" class="form-control"  value="<?php echo $ct;?>">
+					<input type="text" name="Admin_City" class="form-control"  value="<?php echo $_SESSION["ct"];?>">
 				</div>
 				<br>
 				<input type="submit" name="BtnInsert" class="btn btn-outline-dark">
