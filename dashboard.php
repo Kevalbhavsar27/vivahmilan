@@ -176,48 +176,6 @@ session_start();
               <div class="col-xl-2 col-md-4 col-sm-6">
                 <div class="card text-center">
                   <div class="card-body">
-                    <a href="testimonial.php"><div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto my-1">
-                      <i class="fa fa-solid fa-question font-medium-5"></i>
-                    </div>
-                    <span class="text-muted mb-0 line-ellipsis">Testimonial</span>
-                    <h4 class="mb-0">
-                    <?php 
-                        $str="SELECT count(Testimonial_ID) as Total_Testimonial FROM tbl_testimonial";
-                        $count=mysqli_query($conn,$str);
-                        $result_inquiry=mysqli_fetch_array($count);
-                        ?>
-                      <tr>
-                        <td><b><?php echo $result_inquiry['Total_Testimonial'];?></b></td>
-                      </tr>
-                    </h4>
-                  </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <a href="faq_list.php"><div class="badge-circle badge-circle-lg badge-circle-light-success mx-auto my-1">
-                      <i class="fa fa-solid fa-question font-medium-5"></i>
-                    </div>
-                    <span class="text-muted mb-0 line-ellipsis">FAQ</span>
-                    <h4 class="mb-0">
-                    <?php 
-                        $str="SELECT count(Faq_ID) as Total_faq FROM tbl_faq";
-                        $count=mysqli_query($conn,$str);
-                        $result_inquiry=mysqli_fetch_array($count);
-                        ?>
-                      <tr>
-                        <td><b><?php echo $result_inquiry['Total_faq'];?></b></td>
-                      </tr>
-                    </h4>
-                  </a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-2 col-md-4 col-sm-6">
-                <div class="card text-center">
-                  <div class="card-body">
                     <a href="language_list.php"><div class="badge-circle badge-circle-lg badge-circle-light-danger mx-auto my-1">
                       <i class="fa fa-gift font-medium-5"></i>
                     </div>
@@ -292,6 +250,7 @@ session_start();
 									</div>
 								</div>
 					</div>
+          <br><br>
           <div class="row">
 								<!-- Chart For Student Reference  -->
 								<div class="col-md-6 col-sm-6 col-xs-12">
@@ -309,7 +268,7 @@ session_start();
 										</div>
 									</div>
 								</div>
-
+              
 								 <!-- Chart For Expesne Categorized  -->
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<div class="x_panel tile  overflow_hidden">
@@ -336,7 +295,7 @@ session_start();
 											<div class="col-lg-12">
 												<div class="chart-data-selector" id="salesSelectorWrapper">
 													<h2>
-														Members:
+														<br>
 														<!-- <strong>
 															<select class="form-control" id="salesSelector">
 																<option value="JSOFT Admin" selected>JSOFT Admin</option>
@@ -347,7 +306,7 @@ session_start();
 													</h2>
 													<!--  Month wise order-->
 													 <div id="order_container"></div>
-													  Month wise Regester Members
+													 <br>
 												</div>
 											</div>
 										</div>
@@ -416,39 +375,7 @@ session_start();
             </div>-->
             <!-- Daily Financials Card Starts -->  
           </div>
-
-          <div class="row">
-            <!-- Task Card Starts -->
-            <div class="col-lg-12">
-              <div class="row">
-                <div class="col-12">
-                  <div class="card widget-todo">
-                    <div class="card-header border-bottom d-flex justify-content-between align-items-center flex-wrap">
-                      <h4 class="card-title d-flex mb-25 mb-sm-0">
-                        <i class='bx bx-check font-medium-5 pl-25 pr-75'></i>Monthly Registered Members
-                      </h4>
-                      <ul class="list-inline d-flex mb-25 mb-sm-0">
-                      </ul>
-                    </div>
-                    <div class="card-body px-0 py-1">
-                      <div id="student_container"></div>
-                           <div class="x_content">
-                              <div class="col-md-8 col-sm-8 col-xs-12">
-                                  
-                                 <!--  <button id="plain" type="button" class="btn btn-round btn-success">Plain</button>
-                                  <button id="inverted" type="button" class="btn btn-round btn-warning">Inverted</button>
-                                  <button id="polar" type="button" class="btn btn-round btn-danger">Polar</button> -->
-                              </div>  
-                              <div class="clearfix"></div>
-                           </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Daily Financials Card Starts -->
-          </div>
-
+<br>
           <div class="row">
             <!-- Tutor Card Starts -->
             <div class="col-lg-12">
@@ -538,7 +465,7 @@ session_start();
                             </thead>
                             <tbody>
                                 <?php 
-                                $qry="SELECT * FROM `tbl_member` ORDER BY `tbl_member`.`Member_ID` DESC ";
+                                $qry="SELECT * FROM `tbl_member` ORDER BY `tbl_member`.`Member_ID` DESC limit 5 ";
                                 $test=mysqli_query($conn,$qry);
                                 while($result=mysqli_fetch_array($test))
                                 {
@@ -951,7 +878,7 @@ Highcharts.chart('city1_container', {
     type: 'pie'
   },
   title: {
-    text: 'City Report, 2021'
+    text: 'City Report,<?php echo date("Y")?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -998,7 +925,7 @@ Highcharts.chart('marital_container', {
     type: 'pie'
   },
   title: {
-    text: 'Marital Report, 2021'
+    text: 'Marital Report, <?php echo date("Y")?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1045,7 +972,7 @@ Highcharts.chart('state_container', {
     type: 'pie'
   },
   title: {
-    text: 'State Report, 2021'
+    text: 'State Report, <?php echo date("Y")?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1092,7 +1019,7 @@ Highcharts.chart('sub_comm_container', {
     type: 'pie'
   },
   title: {
-    text: 'Sub-Community Report, 2021'
+    text: 'Sub-Community Report, <?php echo date("Y")?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1139,7 +1066,7 @@ Highcharts.chart('reference_container', {
     type: 'pie'
   },
   title: {
-    text: 'Religion Report, 2021'
+    text: 'Religion Report, <?php echo date("Y")?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -1184,7 +1111,7 @@ Highcharts.chart('community_container', {
     type: 'pie'
   },
   title: {
-    text: 'Community Report, 2021'
+    text: 'Community Report, <?php echo date("Y")?>'
   },
   tooltip: {
     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
