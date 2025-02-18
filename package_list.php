@@ -52,7 +52,7 @@ include("connection.php")?>
         }
 
         .silver {
-            color: #C0C0C0; /* Silver color */
+            color:rgb(236, 5, 5); /* Silver color */
             font-weight: bold;
         }
 
@@ -162,7 +162,7 @@ include("connection.php")?>
                             <?php
                               // Assuming $row['Package_Name'] contains the package name
                               if ($row  ['Package_Name'] == "Silver") {
-                                  echo "<b style='color:#ad9a9a;'>" . ucfirst($row['Package_Name']) . "</b>";
+                                  echo "<b style='color:rgb(236, 5, 5);'>" . ucfirst($row['Package_Name']) . "</b>";
                               } elseif ($row['Package_Name'] == "Gold") {
                                   echo "<b style='color:gold;'>" . ucfirst($row['Package_Name']) . "</b>";
                               } elseif ($row['Package_Name'] == "Platinum") {
