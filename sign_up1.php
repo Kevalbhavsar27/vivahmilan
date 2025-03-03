@@ -183,12 +183,12 @@
 		if(isset($_GET['up_id']))
 		{
 			$get_id=$_GET['up_id'];
-			$str="Select * from member_tbl join member_detail_tbl on member_detail_tbl.member_id=member_tbl.member_id where member_tbl.member_id =".$get_id;
+			$str="Select * from tbl_member join tbl_member_detail on tbl_member_detail.Member_ID =tbl_member.Member_ID where tbl_member.Member_ID =".$get_id;
 			$res=mysqli_query($conn,$str);
 			$row=mysqli_fetch_array($res);
-			$fname=$row['member_firstname'];
-			$lname=$row['member_lastname'];
-			$dob=$row['member_dob'];
+			$fname=$row['Member_Firstname'];
+			$lname=$row['Member_Lastname'];
+			$dob=$row['Member_DOB'];
 			$place=$row['Member_Birthplace'];
 		}
 		
@@ -196,7 +196,7 @@
 		{
 			if(!empty($get_id))
 			{
-				$sql="update member_tbl set member_firstname = '".$_POST['Fname']."', member_lastname = '".$_POST['Lname']."', member_dob = '".$_POST['dob']."' where member_id =".$get_id;
+				$sql="update tbl_member set Member_Firstname = '".$_POST['Fname']."', Member_Lastname = '".$_POST['Lname']."', Member_DOB = '".$_POST['dob']."' where Member_ID =".$get_id;
 				mysqli_query($conn,$sql);
 			}
 			else
@@ -216,24 +216,27 @@
 				$member_profile_id=$current.$memb_pro_id;
 				$reg_date=date("Y-m-d");
 
-				$str="update member_tbl set member_city = ".$_POST['cityname'].", member_image = '".$img."',member_firstname = '".$_POST['Fname']."',member_lastname = '".$_POST['Lname']."', member_adhar_id='".$_POST['aadhar']."', member_contact = '".$_POST['contact']."', member_status = '1', member_age = '".$_POST['age']."' , registration_date = '".$reg_date."',member_gender='".$gender."',member_dob = '".$_POST['dob']."' , member_profile_id = '".$member_profile_id."' where member_id =".$Last_ID;
+				$str="update tbl_member set Member_City = ".$_POST['cityname'].", Member_Image = '".$img."',Member_Firstname = '".$_POST['Fname']."',Member_Lastname = '".$_POST['Lname']."', Member_Adhar_ID='".$_POST['aadhar']."', Member_Contact = '".$_POST['contact']."', Member_Status = '1', Member_Age = '".$_POST['age']."' , Registration_Date = '".$reg_date."',Member_Gender='".$gender."',Member_DOB = '".$_POST['dob']."' , Member_Profile_ID = '".$member_profile_id."' where Member_ID =".$Last_ID;
+				echo $str;
 				mysqli_query($conn,$str);
-
 				$hobbies=$_POST['hobby'];
 				$hbs=implode(",",$hobbies);
 				$language=$_POST['lang'];
 				$lng=implode(",",$language);
 
-				$str1="insert into member_detail_tbl values (NULL,".$Last_ID.",'".$_POST['subcommunity_id']."','".$_POST['religion']."','".$lng."','".$_POST['family']."','".$_POST['childs']."','".$_POST['height']."','".$_POST['weight']."','".$_POST['cast']."','".$_POST['maritalstatus']."','".$_POST['body']."','".$_POST['bithplace']."','".$_POST['complexion']."','".$_POST['rashi']."')";
-				mysqli_query($conn,$str1);
+				$str1="insert into tbl_member_detail values (NULL,".$Last_ID.",'".$_POST['subcommunity_id']."','".$_POST['religion']."','".$lng."','".$_POST['family']."','".$_POST['childs']."','".$_POST['height']."','".$_POST['weight']."','".$_POST['cast']."','".$_POST['maritalstatus']."','".$_POST['body']."','".$_POST['bithplace']."','".$_POST['complexion']."','".$_POST['rashi']."')";
+				echo $str1;
+				mysqli_query($conn,query: $str1);
 				$_SESSION['Detail_ID'] = mysqli_insert_id($conn);
 
 				$Last_ID=$L_ID='';
 				$Last_ID = isset($_SESSION['member_id']) ? $_SESSION['member_id'] : '';
 				$L_ID = isset($_SESSION['Detail_ID']) ? $_SESSION['Detail_ID'] : '';
 				$Family = $_POST['family'];
+				$designation= $_POST['designation']; 
 
-				$str="insert into lifestyle_tbl values (NULL,".$L_ID.",'".$_POST['bloodgroup']."','".$hbs."','".$_POST['diet1']."',".$lng.",'".$_POST['residential_add']."','".$_POST['smoke1']."','".$_POST['drink1']."','".$_POST['vehicles']."')";
+				$str="insert into tbl_lifestyle values (NULL,".$L_ID.",'".$_POST['bloodgroup']."','".$hbs."','".$_POST['diet1']."',".$lng.",'".$_POST['residential_add']."','".$_POST['smoke1']."','".$_POST['drink1']."','".$_POST['vehicles']."')";
+				echo $str;
 				mysqli_query($conn,$str);
 				$_SESSION['ID1']=$L_ID;
 
@@ -241,8 +244,11 @@
 				{
                     $ID = $_SESSION['ID1'];
 				}
-				$str="insert into member_qualification_tbl values (NULL,".$ID.",'".$_POST['qualific']."','".$_POST['work']."','".$_POST['occupation']."','".$_POST['designation']."','".$_POST['company']."','".$_POST['income']."','".$_POST['aboutyou']."')";
+				$str="insert into tbl_member_qualification values (NULL,".$ID.",'".$_POST['qualific']."','".$_POST['work']."','".$_POST['occupation']."','".$designation."','".$_POST['company']."','".$_POST['income']."','".$_POST['aboutyou']."')";
+				echo $str;
 				mysqli_query($conn,$str);
+				
+				
 			}
 		}
 	?>
@@ -360,7 +366,7 @@
 										</div>
 										<div class="row">
 											<div class="col-md-6 form-group">
-												<label class="lb">Your Community:</label>
+												<label class="lb">Your Community :</label>
 												<select onChange="getSub_community(this.value);" name="Community_ID" class="form-control form-select chosen-select" data-placeholder="Select your Community">
 												<!--<option selected disabled value="">Select Community</option> -->
 												<option selected disabled value="">Select Community</option>
