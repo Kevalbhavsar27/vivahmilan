@@ -1,6 +1,7 @@
-<?php include "connection.php";?>
 <!doctype html>
 <html lang="en">
+
+
 <!-- Dream Class By login.php  -->
 <head>
     <title>Wedding Matrimony</title>
@@ -536,9 +537,32 @@
                             <div>
                                 <div class="form-tit">
                                     <h4>Start for free</h4>
-                                    <h1>Sign in to </h1>
-                                    <p>Not a member? <a href="sign_up.php">Sign up now</a></p>
+                                    <h1>Sign in to Matrimony</h1>
+                                    <p>Not a member? <a href="sign-up.php">Sign up now</a></p>
                                 </div>
+                                <?php
+                                include 'connection.php';
+
+    session_start();
+    //if(isset($_SESSION["ID"]))
+    //{
+    
+    //header('location:dashboard.php');
+    //}
+     if(isset($_POST['btnlogin']))
+    {
+        
+        $str="select * from tbl_member where Member_Email = '".$_POST['email']."' and Member_Password = '".$_POST['pswd']."'";
+        $data=mysqli_query($conn,$str);
+        $row=mysqli_num_rows($data);
+        $result=mysqli_fetch_array($data);
+        if($row>0)
+        {
+        header('location:index.php');
+        }
+    }
+?>
+
                                 <div class="form-login">
                                     <form>
                                         <div class="form-group">
@@ -548,7 +572,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="lb">Password:</label>
-                                            <input type="password" class="form-control" id="pwd"
+                                            <input type="password" class="form-control" id="pswd"
                                                 placeholder="Enter password" name="pswd">
                                         </div>
                                         <div class="form-group form-check">
@@ -557,7 +581,7 @@
                                                 me
                                             </label>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Sign in</button>
+                                        <button type="submit" name="btnlogin" class="btn btn-primary">Sign in</button>
                                     </form>
                                 </div>
                             </div>

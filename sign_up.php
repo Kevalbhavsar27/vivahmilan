@@ -1,4 +1,4 @@
-	<?php
+<?php
 	include_once 'connection.php';
 ?>
 <!doctype html>
@@ -59,7 +59,7 @@
 
     <!-- HEADER & MENU -->
     <?php
-		//include_once 'menu.php';
+		include_once 'menu.php';
 	?>
     <!-- END MOBILE MENU POPUP -->
 
@@ -110,7 +110,7 @@
                                         <div class="form-group">
 											<label class="lb" style="color: #5b2a07;">Looking For:</label>
 											<!-- Looking For -->
-											<select id="looking_for" class="form-control" name="looking"  onChange="get_gender(this.value);">
+											<select id="looking_for" class="form-control" onChange="get_gender(this.value);" name="looking">
 												<option value="">-Select-</option>
 												<option value="Man">Man</option>                
 												<option value="Woman">Woman</option>
@@ -163,7 +163,7 @@
 												</select>
 											</div>
 										</div>
-										<div id="message"></div>
+										<div id="message"style="color: red;font-size: 14px;"></div>
                                         <div class="form-group">
                                             <label class="lb" style="color: #5b2a07;">Email:</label>
                                             <!-- Email -->
@@ -275,55 +275,51 @@
 		});
 	});
 
-		//--------------- Enable Button using CheckBox -------------------
-		 var checker = document.getElementById('checkme');
-		 var sendbtn = document.getElementById('sendNewSms');
-		 // when unchecked or checked, run the function
-		 checker.onchange = function(){
-		if(this.checked){
-		    sendbtn.disabled = false;
-		} else {
-		    sendbtn.disabled = true;
+	//--------------- Enable Button using CheckBox -------------------
+	 var checker = document.getElementById('checkme');
+	 var sendbtn = document.getElementById('sendNewSms');
+	 // when unchecked or checked, run the function
+	 checker.onchange = function(){
+	if(this.checked){
+		sendbtn.disabled = false;
+	} else {
+		sendbtn.disabled = true;
+	}
+
+	}
+
+	//--------------- Enable Button using CheckBox -------------------
+
+	//Cache these as variables so we only have to select once
+	var $min= $("#MinAgeDropDown");
+	var $max = $("#MaxAgeDropDown");
+	var $msg = $("#message");
+	//alert($min);
+	//Apply a single change event to fire on either dropdown
+	$min.add($max).change(function () {
+		//Have some default text to display, an empty string
+		var text = "";
+			
+		//Cache the vales as variables so we don't have to keep getting them
+		//We will parse the numbers out of the string values
+		var minVal = parseInt($min.val(),10);
+		var maxVal = parseInt($max.val(),10)
+		
+		//Determine if both are numbers, if so then they both have values
+		var bothHaveValues = !isNaN(minVal) && !isNaN(maxVal);
+		
+		if(bothHaveValues){
+			if(minVal > maxVal){
+				text += "Minimum age should be less than maximum";
+			}else if(maxVal < minVal){
+				text += "Maximum age should be greater than minimum";
+			}
 		}
+		
+		//Display the text
+		$msg.html(text);
+	});
 
-		}
-
-		//--------------- Enable Button using CheckBox -------------------
-
-
-
-		//Cache these as variables so we only have to select once
-		var $min= $("#MinAgeDropDown");
-		var $max = $("#MaxAgeDropDown");
-		var $msg = $("#message");
-		//alert($min);
-		//Apply a single change event to fire on either dropdown
-		$min.add($max).change(function () {
-		    //Have some default text to display, an empty string
-		    var text = "";
-		        
-		    //Cache the vales as variables so we don't have to keep getting them
-		    //We will parse the numbers out of the string values
-		    var minVal = parseInt($min.val(),10);
-		    var maxVal = parseInt($max.val(),10)
-		    
-		    //Determine if both are numbers, if so then they both have values
-		    var bothHaveValues = !isNaN(minVal) && !isNaN(maxVal);
-		    
-		    if(bothHaveValues){
-		        if(minVal > maxVal){
-		            text += 'Minimum age should be less than maximum';
-		        }else if(maxVal < minVal){
-		            text += 'Maximum age should be greater than minimum';
-		        }
-		    }
-		    
-		    //Display the text
-		    $msg.html(text);
-		});
-	</script>
-	
-	<script>
 	$(document).ready(function(){
 		$(".dropdown").hover(            
 			function() {
@@ -338,7 +334,7 @@
 	});
 
 	function get_gender(val) {
-	//	alert('hi'+val);
+		//alert('hi'+val);
 			 $.ajax({
 			 type: "POST",
 			 url: "get_sub_community.php",
