@@ -1,5 +1,6 @@
 <?php
-	include_once 'connection.php';
+	include 'connection.php';
+	session_start()
 ?>
 <!doctype html>
 <html lang="en">
@@ -89,21 +90,19 @@
                                     <p>Already a member? <a href="login.php">Login</a></p>
                                 </div>
                                 <div class="form-login">
-									<?php 
+								<?php 
 										# && isset($_POST['checked']) && ($_POST['checked']=="checked")
 										if(isset($_POST['btnInsert']))
-										{
-											
-											$str="insert into member_tbl (member_id, member_email, member_password, member_profile_for, member_looking_for, member_min_age, member_max_age) values (NULL,'".$_POST['email']."','".$_POST['pwd']."','".$_POST['profilefor']."','".$_POST['looking']."',".$_POST['minage'].",".$_POST['maxage'].")";
-											//echo $str;die;
-												mysqli_query($conn,$str);
-												//echo $str;
-												$_SESSION['member_id'] = mysqli_insert_id($conn);
-												$_SESSION['member_email'] = $_POST['email'];
-												$_SESSION['member_password'] = $_POST['pwd'];
-												//echo $str;
-												//header('location:register.php');
-												echo "<script type='text/javascript'>  window.location='sign_up1.php'; </script>";
+										{	
+											$str="insert into tbl_member (Member_ID, Member_Email,Member_Password,Member_Profile_For,Member_Looking_For,Member_Min_Age,Member_Max_Age) values (NULL,'".$_POST['email']."','".$_POST['pwd']."','".$_POST['profilefor']."','".$_POST['looking']."',".$_POST['minage'].",".$_POST['maxage'].")";
+											mysqli_query($conn,$str);
+											//echo $str;
+											$_SESSION['member_id'] = mysqli_insert_id($conn);
+											$_SESSION['user_Email'] = $_POST['email'];
+											$_SESSION['Member_Password'] = $_POST['pwd'];
+											//echo $str;
+											//header('location:register.php');
+											echo "<script type='text/javascript'>  window.location='sign_up1.php'; </script>";
 										}
 									?>
                                     <form method="POST" id="form-registration" name="form_name" autocomplete="off" >

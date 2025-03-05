@@ -170,7 +170,8 @@
 
     <!-- HEADER & MENU -->
     <?php
-		//include_once 'menu.php';
+		//6[]=
+		// nclude_once 'menu.php';
 	?>
     <!-- END MOBILE MENU POPUP -->
 
