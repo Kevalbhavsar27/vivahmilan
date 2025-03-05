@@ -189,7 +189,7 @@
      <?php $member_id= $_GET['member_id'];
 
     $str="select * from tbl_send_request, tbl_member, tbl_member_detail, tbl_member_qualification,
-             cities, tbl_lifestyle where tbl_member.Member_ID = tbl_send_request.Member_ID and tbl_member_detail.Member_ID = tbl_send_request.Member_ID 
+             cities, tbl_lifestyle, tbl_community where tbl_member.Member_ID = tbl_send_request.Member_ID and tbl_member_detail.Member_ID = tbl_send_request.Member_ID 
              and tbl_member_qualification.Member_Detail_ID = tbl_member_detail.Member_Detail_ID and tbl_lifestyle.Member_Detail_ID = tbl_member_detail.Member_Detail_ID
              and tbl_member.Member_City = cities.id and tbl_send_request.member_id='".$member_id."'";
         $display= mysqli_query($conn, $str);
@@ -252,12 +252,7 @@
                             <!-- PROFILE ABOUT -->
                             <div class="pr-bio-c pr-bio-abo">
                                 <h3>About</h3>
-                                <p>It is a long established fact that a reader will be distracted by the readable
-                                    content of a page when looking at its layout. The point of using Lorem Ipsum is that
-                                    it has a more-or-less normal distribution of letters, as opposed to using 'Content
-                                    here, content here', making it look like readable English. </p>
-                                <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their
-                                    default model text.</p>
+                                <p><?php echo $row['Member_Description']; ?></p>
                             </div>
                             <!-- END PROFILE ABOUT -->
                             <!-- PROFILE ABOUT -->
@@ -302,24 +297,297 @@
                                 </ul>
                             </div>
                             <!-- END PROFILE ABOUT -->
+
                             <!-- PROFILE ABOUT -->
-                            <div class="pr-bio-c pr-bio-info">
+                             <div class="pr-bio-c pr-bio-info">
                                 <h3>Personal information</h3>
-                                <ul>
-                                    <li><b>Name:</b><?php echo ucFirst($row['Member_Firstname']);?> <?php echo ucFirst($row['Member_Lastname']);?></li>
-                                    <li><b>Age:</b><?php echo ucFirst($row['Member_Age']);?></li>
-                                    <li><b>Date of birth:</b><?php echo ucFirst($row['Member_DOB']);?></li>
-                                    <li><b>Height:</b><?php echo ucFirst($row['Member_Height']);?></li>
-                                    <li><b>Weight:</b><?php echo ucFirst($row['Member_Weight']);?></li>
-                                    <li><b>Qualification:</b> <?php echo ucFirst($row['Member_Qualification']);?></li>
-                                    <li><b>Religion:</b> <?php echo ucFirst($row['Member_Religion']);?></li>
-                                    <li><b>Profession:</b><?php echo ucFirst($row['Member_Occupation']);?></li>
-                                    <li><b>Company:</b> <?php echo ucFirst($row['Member_Company_Name']);?></li>
-                                    <li><b>Position:</b><?php echo ucFirst($row['Member_Designation']);?></li>
-                                    <li><b>Salary:</b> <?php echo ucFirst($row['Member_Income']);?></li>
-                                </ul>
-                            </div>
+                            </div>				    			
+								<div class="db">
+								<div class="container">
+								<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-12">
+								<div class="row">
+								<div class="col-md-12 db-sec-com">
+								<!--<h2 class="db-tit">Interest request</h2>-->
+								<div class="db-pro-stat" style="margin-top:-40px;">
+								<div class="dropdown">
+									<button type="button" class="btn btn-outline-secondary" data-bs-toggle="dropdown">
+										<i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+									</button>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#">Edit profile</a></li>
+										<li><a class="dropdown-item" href="#">View profile</a></li>
+										<li><a class="dropdown-item" href="#">Plan change</a></li>
+										<li><a class="dropdown-item" href="#">Download invoice now</a></li>
+									</ul>
+								</div>
+								<div class="db-inte-main">
+									<ul class="nav nav-tabs" role="tablist">
+									<li class="nav-item">
+									<a class="nav-link active" data-bs-toggle="tab" href="#home">About Myself</a>
+									</li>
+									<li class="nav-item">
+									<a class="nav-link" data-bs-toggle="tab" href="#menu1">Education Details</a>
+									</li>
+									<li class="nav-item">
+									<a class="nav-link" data-bs-toggle="tab" href="#menu2">Partener Preferences</a>
+									</li>
+									</ul>
+								<!-- Tab panes -->
+								<!-- Tab panes -->
+								<div class="tab-content">
+								<div id="home" class="container tab-pane active"><br>
+								<div class="db-inte-prof-list">
+								<ul>	
+								<li>
+								<div class="basic_1">
+								<div class="col-md-6 basic_1-left">
+									<table class="table_working_hours">
+										<tbody>
+											<tr class="opened_1">
+												<td class="day_label">Name :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Firstname']); ?></td>
+											</tr>
+											<tr class="opened_1">
+												<td class="day_label">Age :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Age']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Body Type :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Body_Type']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Marital Status :</td>
+												<td class="day_value"><?php echo ucfirst($row['Marital_Status']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Height :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Height'])."ft"; ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Contact No. :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Member_Contact']); ?></span></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Profile Created by :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Member_Profile_For']); ?></span></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Drink :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Drinking_Habbits']); ?></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-md-6 basic_1-left">
+									<table class="table_working_hours">
+										<tbody>
+											<tr class="opened">
+												<td class="day_label">Last Name :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Lastname']); ?></td>
+											</tr>
+
+											<tr class="opened">
+												<td class="day_label">Language Known :</td>
+												<td class="day_value"><?php echo ucfirst($row['Languages_Known']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Complexion :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Complexion']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Weight :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Weight'])." kg"; ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Blood Group :</td>
+												<td class="day_value"><?php echo ucfirst($row['BloodGroup']); ?></td>
+											</tr>
+											<tr class="closed">
+												<td class="day_label">Diet :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Member_Diet']); ?></span></td>
+											</tr>
+											<tr class="closed">
+												<td class="day_label">Smoke :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Smoking_Habbits']); ?></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="clearfix"> </div>
+								</div><br><br>
+								<div class="basic_1">
+								<h3>Religious / Social & Astro Background</h3>
+								<div class="col-md-6 basic_1-left">
+									<table class="table_working_hours">
+										<tbody>
+											<tr class="opened">
+												<td class="day_label">Birth Place :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Birthplace']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Caste :</td>
+												<td class="day_value"><?php echo ucfirst($row['Drinking_Habbits']); ?></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Date of Birth :</td>
+												<td class="day_value closed"><span><?php echo date("d-M-Y" , strtotime($row['Member_DOB'])); ?></span></td>
+											</tr>
+											<tr class="opened">
+												<td class="day_label">Place of Birth :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Member_Birthplace']); ?></span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-md-6 basic_1-left">
+									<table class="table_working_hours">
+										<tbody>
+										<tr class="opened_1">
+											<td class="day_label">Religion :</td>
+											<td class="day_value"><?php echo ucfirst($row['Member_Religion']); ?></td>
+										</tr>
+										<tr class="opened">
+											<td class="day_label">Sub Caste :</td>
+											<td class="day_value"><?php echo ucfirst($row['Member_Sub_Community_ID']); ?></td>
+										</tr>
+										<tr class="opened">
+											<td class="day_label">Rashi :</td>
+											<td class="day_value"><?php echo ucfirst($row['Member_Rashi']); ?></td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="clearfix"> </div>
+								</div>
+								</li>
+
+								</ul>
+								</div>
+								</div>
+								<br>
+								<div id="menu1" class="container tab-pane fade"><br>
+								<div class="db-inte-prof-list">
+								<ul>
+								<li>
+								<div class="basic_3">
+								<div class="basic_1 basic_2">
+									<!-- <h3>Basics</h3> -->
+									<div class="col-md-6 basic_1-left">
+										<table class="table_working_hours">
+											<tbody>
+												<tr class="opened">
+												<td class="day_label">Education   :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Qualification']); ?></td>
+												</tr>
+												<tr class="opened">
+												<td class="day_label">Education Detail :</td>
+												<td class="day_value"><?php echo ucfirst($row['Member_Designation']); ?></td>
+												</tr>
+												<tr class="opened">
+												<td class="day_label">Occupation Detail :</td>
+												<td class="day_value closed"><span><?php echo ucfirst($row['Member_Occupation']); ?></span></td>
+												</tr>
+												<tr class="opened">
+												<td class="day_label">Income :</td>
+												<td class="day_value closed"><span>Rs.<?php echo ucfirst($row['Member_Income']); ?></span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								</div>
+								</li>
+								</ul>
+								</div>
+								</div>
+								<div id="menu2" class="container tab-pane fade"><br>
+								<div class="db-inte-prof-list">
+								<ul>
+								<li>
+								<div class="basic_1 basic_2">
+								<div class="basic_1-left">
+								<table class="table_working_hours">
+								<tbody>
+									<tr class="opened">
+										<td class="day_label">Age   :</td>
+										<td class="day_value"><?php echo ucfirst($row['Member_Age']); ?></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Marital Status:</td>
+										<td class="day_value"><?php echo ucfirst($row['Marital_Status']); ?></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Body Type :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Member_Body_Type']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Complexion :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Member_Complexion']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Diet :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Member_Diet']); ?></span></td>
+									</tr>
+
+									<tr class="opened">
+										<td class="day_label">Religion :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Member_Religion']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Community :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Community_Name']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Mother Tongue :</td>
+										<td class="day_value closed"><span>Doesn't matter</span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Education :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Member_Qualification']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Occupation :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Member_Occupation']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Country of Residence :</td>
+										<td class="day_value closed"><span>Doesn't matter</span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">State :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['name']); ?></span></td>
+									</tr>
+									<tr class="opened">
+										<td class="day_label">Residency Status :</td>
+										<td class="day_value closed"><span><?php echo ucfirst($row['Residential_Status']); ?></span></td>
+									</tr>
+								</tbody>
+								</table>
+								</div>
+								</div>
+								</li>
+								</ul>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								</div>
+							</div>	
                             <!-- END PROFILE ABOUT -->
+                           
+
+
+
+
+
+
+
                             <!-- PROFILE ABOUT -->
                             <div class="pr-bio-c pr-bio-hob">
                                 <h3>Hobbies</h3>
