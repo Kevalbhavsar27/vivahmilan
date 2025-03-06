@@ -218,7 +218,6 @@
 				$reg_date=date("Y-m-d");
 
 				$str="update tbl_member set Member_City = ".$_POST['cityname'].", Member_Image = '".$img."',Member_Firstname = '".$_POST['Fname']."',Member_Lastname = '".$_POST['Lname']."', Member_Adhar_ID='".$_POST['aadhar']."', Member_Contact = '".$_POST['contact']."', Member_Status = '1', Member_Age = '".$_POST['age']."' , Registration_Date = '".$reg_date."',Member_Gender='".$gender."',Member_DOB = '".$_POST['dob']."' , Member_Profile_ID = '".$member_profile_id."' where Member_ID =".$Last_ID;
-				echo $str;
 				mysqli_query($conn,$str);
 				$hobbies=$_POST['hobby'];
 				$hbs=implode(",",$hobbies);

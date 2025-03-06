@@ -1,6 +1,5 @@
 <?php
 	include 'connection.php';
-	session_start()
 ?>
 <!doctype html>
 <html lang="en">
@@ -60,12 +59,14 @@
 
     <!-- HEADER & MENU -->
     <?php
-		include_once 'menu.php';
+		// include_once 'menu.php';
+		// include 'get_member.php';
 	?>
     <!-- END MOBILE MENU POPUP -->
 
     <!-- MOBILE USER PROFILE MENU POPUP -->
     <!-- END USER PROFILE MENU POPUP -->
+
 
     <!-- REGISTER -->
     <section>
@@ -94,7 +95,8 @@
 										# && isset($_POST['checked']) && ($_POST['checked']=="checked")
 										if(isset($_POST['btnInsert']))
 										{	
-											$str="insert into tbl_member (Member_ID, Member_Email,Member_Password,Member_Profile_For,Member_Looking_For,Member_Min_Age,Member_Max_Age) values (NULL,'".$_POST['email']."','".$_POST['pwd']."','".$_POST['profilefor']."','".$_POST['looking']."',".$_POST['minage'].",".$_POST['maxage'].")";
+											// $str="insert into tbl_member (Member_ID, Member_Email,Member_Password,Member_Profile_For,Member_Looking_For,Member_Min_Age,Member_Max_Age) values (NULL,'".$_POST['email']."','".$_POST['pwd']."','".$_POST['profilefor']."','".$_POST['looking']."',".$_POST['minage'].",".$_POST['maxage'].")";
+											$str="insert into tbl_member (Member_Email,Member_Password,Member_Profile_For,Member_Looking_For,Member_Min_Age,Member_Max_Age) values (NULL,'".$_POST['email']."','".$_POST['pwd']."','".$_POST['profilefor']."','".$_POST['looking']."',".$_POST['minage'].",".$_POST['maxage'].")";
 											mysqli_query($conn,$str);
 											//echo $str;
 											$_SESSION['member_id'] = mysqli_insert_id($conn);
