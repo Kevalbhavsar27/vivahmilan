@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2025 at 08:08 AM
+-- Generation Time: Mar 19, 2025 at 05:36 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `vivahmilan`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_tbl`
+--
+
+CREATE TABLE `admin_tbl` (
+  `admin_id` int(3) NOT NULL,
+  `admin_name` varchar(20) NOT NULL,
+  `admin_email` varchar(30) NOT NULL,
+  `admin_password` varchar(60) NOT NULL,
+  `admin_contact` bigint(10) NOT NULL,
+  `admin_city` varchar(8) NOT NULL,
+  `admin_profile` text NOT NULL,
+  `admin_status` enum('0','1') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `admin_tbl`
+--
+
+INSERT INTO `admin_tbl` (`admin_id`, `admin_name`, `admin_email`, `admin_password`, `admin_contact`, `admin_city`, `admin_profile`, `admin_status`) VALUES
+(1, 'Keval bhavsar', 'kevalbhavsar2712@gmail.com', '111', 7069683976, 'Select C', '6.jpg', '1');
 
 -- --------------------------------------------------------
 
@@ -41,194 +65,116 @@ CREATE TABLE `chat_message` (
 --
 
 INSERT INTO `chat_message` (`chat_message_id`, `to_user_id`, `from_user_id`, `chat_message`, `timestamp`, `status`) VALUES
-(8, 162, 168, 'hello devðŸ˜‡ðŸ˜Š', '2021-06-23 06:46:04', 0),
-(9, 162, 168, 'how are you', '2021-06-23 06:46:13', 0),
-(10, 168, 162, 'hello Vats,M fine', '2021-06-23 06:48:00', 0),
-(11, 162, 165, 'hello dev what are you doing??ðŸ˜ƒðŸ˜€ðŸ˜„', '2021-06-23 06:50:08', 0),
-(17, 103, 169, 'kesi ho ðŸ˜†ðŸ˜†ðŸ˜†ðŸ˜†ðŸ˜†ðŸ˜†', '2021-06-23 08:29:47', 0),
-(18, 169, 103, 'i am fine \nðŸ¤‘ðŸ¤‘ðŸ¤‘\n', '2021-06-23 08:30:30', 0),
-(19, 103, 169, 'kaisi ho divya ðŸ˜›ðŸ˜›ðŸ˜›ðŸ˜›ðŸ˜›', '2021-06-23 08:31:30', 0),
-(20, 103, 162, 'hi', '2021-06-23 13:52:47', 0),
-(21, 162, 103, 'bol ', '2021-06-23 13:52:59', 0),
-(22, 103, 162, 'kaini', '2021-06-23 13:53:05', 0),
-(23, 162, 103, 'ok bye', '2021-06-23 13:53:13', 0),
-(24, 168, 172, 'hello gm ðŸ˜ƒðŸ˜€', '2021-06-24 05:46:06', 0),
-(25, 168, 172, 'hello', '2021-06-24 05:47:00', 0),
-(26, 103, 168, 'hello divyaðŸ˜„ ', '2021-06-24 05:54:53', 0),
-(27, 168, 103, 'hii vats ðŸ™‚', '2021-06-24 05:55:17', 0),
-(28, 103, 168, 'good morning,how are you ðŸ˜Š', '2021-06-24 05:55:52', 0),
-(29, 168, 103, 'good morning..\nnothing much M working  on my final year project..ðŸ˜…ðŸ˜…', '2021-06-24 05:56:50', 0),
-(30, 103, 168, 'ok how going on you study...ðŸ˜£ðŸ˜œðŸ™ƒðŸ™ƒ', '2021-06-24 05:57:23', 0),
-(31, 103, 168, 'Nothing much..ðŸ˜•', '2021-06-25 10:13:07', 0);
+(9, 46, 39, 'Hello ', '2025-03-11 15:11:21', 0),
+(10, 46, 39, 'How are you?\n\n', '2025-03-11 15:11:30', 0),
+(11, 39, 46, 'Hiee \n\n', '2025-03-11 15:11:58', 0),
+(12, 39, 46, 'Yess of couse', '2025-03-11 15:12:12', 0),
+(13, 46, 39, 'ðŸ˜‡', '2025-03-11 15:12:31', 0),
+(14, 44, 39, 'hii love', '2025-03-13 05:19:23', 0),
+(15, 44, 39, 'how are you ?????????', '2025-03-13 05:19:50', 0),
+(16, 39, 44, 'i am fine wbu?', '2025-03-13 05:21:22', 0),
+(17, 44, 39, '??', '2025-03-13 05:22:35', 0),
+(18, 39, 44, 'hii rishi?', '2025-03-13 06:32:43', 0),
+(19, 39, 44, '????', '2025-03-13 06:33:09', 0),
+(20, 44, 39, 'byyyyyyy', '2025-03-18 04:35:34', 1),
+(21, 44, 39, 'mane tari sathe koi vaat nathi karvi', '2025-03-18 04:35:57', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cities`
+-- Table structure for table `city_tbl`
 --
 
-CREATE TABLE `cities` (
-  `id` int(11) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `state_id` int(11) NOT NULL,
-  `status` enum('1','0') NOT NULL
+CREATE TABLE `city_tbl` (
+  `city_id` int(12) NOT NULL,
+  `city_name` varchar(25) NOT NULL,
+  `state_id` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `cities`
+-- Dumping data for table `city_tbl`
 --
 
-INSERT INTO `cities` (`id`, `name`, `state_id`, `status`) VALUES
-(1, 'Bombuflat', 1, '1'),
-(2, 'Garacharma', 1, '1'),
-(3, 'Port Blair', 1, '1'),
-(4, 'Rangat', 1, '1'),
-(5, 'Addanki', 2, '1'),
-(6, 'Adivivaram', 2, '1'),
-(7, 'Adoni', 2, '1'),
-(8, 'Aganampudi', 2, '1'),
-(9, 'Ajjaram', 2, '1'),
-(10, 'Akividu', 2, '1'),
-(11, 'Akkarampalle', 2, '1'),
-(12, 'Akkayapalle', 2, '1'),
-(13, 'Akkireddipalem', 2, '1'),
-(14, 'Alampur', 2, '1'),
-(15, 'Amalapuram', 2, '1'),
-(16, 'Amudalavalasa', 2, '1'),
-(17, 'Amur', 2, '1'),
-(18, 'Anakapalle', 2, '1'),
-(19, 'Anantapur', 2, '1'),
-(20, 'Andole', 2, '1'),
-(21, 'Atmakur', 2, '1'),
-(22, 'Attili', 2, '1'),
-(23, 'Avanigadda', 2, '1'),
-(24, 'Badepalli', 2, '1'),
-(25, 'Badvel', 2, '1'),
-(26, 'Balapur', 2, '1'),
-(27, 'Bandarulanka', 2, '1'),
-(28, 'Banganapalle', 2, '1'),
-(29, 'Bapatla', 2, '1'),
-(30, 'Bapulapadu', 2, '1'),
-(31, 'Belampalli', 2, '1'),
-(32, 'Bestavaripeta', 2, '1'),
-(33, 'Betamcherla', 2, '1'),
-(34, 'Bhattiprolu', 2, '1'),
-(35, 'Bhimavaram', 2, '1'),
-(36, 'Bhimunipatnam', 2, '1'),
-(37, 'Bobbili', 2, '1'),
-(38, 'Bombuflat', 2, '1'),
-(39, 'Bommuru', 2, '1'),
-(40, 'Bugganipalle', 2, '1'),
-(41, 'Challapalle', 2, '1'),
-(42, 'Chandur', 2, '1'),
-(43, 'Chatakonda', 2, '1'),
-(44, 'Chemmumiahpet', 2, '1'),
-(45, 'Chidiga', 2, '1'),
-(46, 'Chilakaluripet', 2, '1'),
-(47, 'Chimakurthy', 2, '1'),
-(48, 'Chinagadila', 2, '1'),
-(49, 'Chinagantyada', 2, '1'),
-(50, 'Chinnachawk', 2, '1'),
-(51, 'Chintalavalasa', 2, '1'),
-(52, 'Chipurupalle', 2, '1'),
-(53, 'Chirala', 2, '1'),
-(54, 'Chittoor', 2, '1'),
-(55, 'Chodavaram', 2, '1'),
-(56, 'Choutuppal', 2, '1'),
-(57, 'Chunchupalle', 2, '1'),
-(58, 'Cuddapah', 2, '1'),
-(59, 'Cumbum', 2, '1'),
-(60, 'Darnakal', 2, '1'),
-(61, 'Dasnapur', 2, '1'),
-(62, 'Dauleshwaram', 2, '1'),
-(63, 'Dharmavaram', 2, '1'),
-(64, 'Dhone', 2, '1'),
-(65, 'Dommara Nandyal', 2, '1'),
-(66, 'Dowlaiswaram', 2, '1'),
-(67, 'East Godavari Dist.', 2, '1'),
-(68, 'Eddumailaram', 2, '1'),
-(69, 'Edulapuram', 2, '1'),
-(70, 'Ekambara kuppam', 2, '1'),
-(71, 'Eluru', 2, '1'),
-(72, 'Enikapadu', 2, '1'),
-(73, 'Fakirtakya', 2, '1'),
-(74, 'Farrukhnagar', 2, '1'),
-(75, 'Gaddiannaram', 2, '1'),
-(76, 'Gajapathinagaram', 2, '1'),
-(77, 'Gajularega', 2, '1'),
-(78, 'Gajuvaka', 2, '1'),
-(79, 'Gannavaram', 2, '1'),
-(80, 'Garacharma', 2, '1'),
-(81, 'Garimellapadu', 2, '0'),
-(82, 'Giddalur', 2, '1'),
-(83, 'Godavarikhani', 2, '1'),
-(84, 'Gopalapatnam', 2, '1'),
-(85, 'Gopalur', 2, '1'),
-(86, 'Gorrekunta', 2, '1'),
-(87, 'Gudivada', 2, '1'),
-(88, 'Gudur', 2, '1'),
-(89, 'Guntakal', 2, '1'),
-(90, 'Guntur', 2, '1'),
-(91, 'Guti', 2, '1'),
-(92, 'Hindupur', 2, '1'),
-(93, 'Hukumpeta', 2, '0'),
-(94, 'Ichchapuram', 2, '1'),
-(95, 'Isnapur', 2, '1'),
-(96, 'Jaggayyapeta', 2, '0'),
-(97, 'Jallaram Kamanpur', 2, '1'),
-(98, 'Jammalamadugu', 2, '1'),
-(99, 'Jangampalli', 2, '1'),
-(100, 'Jarjapupeta', 2, '1'),
-(101, 'Kadiri', 2, '1'),
-(102, 'Kaikalur', 2, '1'),
-(103, 'Kakinada', 2, '1'),
-(104, 'Kallur', 2, '1'),
-(105, 'Kalyandurg', 2, '1'),
-(106, 'Kamalapuram', 2, '1'),
-(107, 'Kamareddi', 2, '1'),
-(108, 'Kanapaka', 2, '1'),
-(109, 'Kanigiri', 2, '1'),
-(110, 'Kanithi', 2, '1'),
-(111, 'Kankipadu', 2, '1'),
-(112, 'Kantabamsuguda', 2, '1'),
-(113, 'Kanuru', 2, '1'),
-(114, 'Karnul', 2, '1'),
-(115, 'Katheru', 2, '1'),
-(116, 'Kavali', 2, '1'),
-(117, 'Kazipet', 2, '1'),
-(118, 'Khanapuram Haveli', 2, '1'),
-(119, 'Kodar', 2, '1'),
-(120, 'Kollapur', 2, '1'),
-(121, 'Kondapalem', 2, '1'),
-(122, 'Kondapalle', 2, '1'),
-(123, 'Kondukur', 2, '1'),
-(124, 'Kosgi', 2, '1'),
-(125, 'Kothavalasa', 2, '1'),
-(126, 'Kottapalli', 2, '1'),
-(127, 'Kovur', 2, '1'),
-(128, 'Kovurpalle', 2, '1'),
-(129, 'Kovvur', 2, '1'),
-(130, 'Krishna', 2, '1'),
-(131, 'Kuppam', 2, '1'),
-(132, 'Kurmannapalem', 2, '1'),
-(133, 'Kurnool', 2, '1'),
-(134, 'Lakshettipet', 2, '1'),
-(135, 'Lalbahadur Nagar', 2, '1'),
-(136, 'Machavaram', 2, '1'),
-(137, 'Macherla', 2, '1'),
-(138, 'Machilipatnam', 2, '1'),
-(139, 'Madanapalle', 2, '1'),
-(140, 'Madaram', 2, '1'),
-(141, 'Madhuravada', 2, '1'),
-(142, 'Madikonda', 2, '1'),
-(143, 'Madugule', 2, '1'),
-(144, 'Mahabubnagar', 2, '1'),
-(145, 'Mahbubabad', 2, '1'),
-(146, 'Malkajgiri', 2, '1'),
-(147, 'Mamilapalle', 2, '1'),
-(148, 'Mancheral', 2, '1'),
-(149, 'Mandapeta', 2, '1'),
-(150, 'Mandasa', 2, '1');
+INSERT INTO `city_tbl` (`city_id`, `city_name`, `state_id`) VALUES
+(6, 'Surat', 7),
+(7, 'Mumbai', 8),
+(8, 'Ahemdabad', 7),
+(9, 'Pune', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `community_tbl`
+--
+
+CREATE TABLE `community_tbl` (
+  `community_id` int(4) NOT NULL,
+  `community_name` varchar(15) NOT NULL,
+  `community_status` enum('1','0') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `community_tbl`
+--
+
+INSERT INTO `community_tbl` (`community_id`, `community_name`, `community_status`) VALUES
+(18, 'Marwadi', '1'),
+(19, 'Gachi', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `faq_tbl`
+--
+
+CREATE TABLE `faq_tbl` (
+  `faq_id` int(4) NOT NULL,
+  `faq_que` varchar(45) NOT NULL,
+  `faq_ans` text NOT NULL,
+  `faq_status` enum('1','0') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `faq_tbl`
+--
+
+INSERT INTO `faq_tbl` (`faq_id`, `faq_que`, `faq_ans`, `faq_status`) VALUES
+(9, 'How to register on vivaahmilan123@gmail.com', 'Registering on vivaahmilan123@gmail.com is simple & completely free. The profile can be created by the person intended to get married, his/her parents, relatives or friends for him. Any person of legal age who intends to find a life partner can register.\r\n\r\nRegistration can be done using the m4marry website or mobile (Android/iOS). Start by entering basic details of the bride/groom-to-be, following which there will be a mandatory mobile verification. Once the mobile number is successfully verified, fill in the rest of your profile to complete the registration process. A profile ID will be generated automatically.', '1'),
+(10, 'What do I enter in the field About Me?', '‘About Me’ is where you can enter a description of yourself. Most members who view your profile get a picture of you based on what you enter here. Mention the kind of person you are, your job profile, interests and so on. All content in this space will be screened for objectionable matter. Please do not enter contact details in this space to avoid the entries being rejected.', '1'),
+(11, ' How do I search for my partner?', 'You can search for your partner on m4marry.com using the simple search. You can also use the advanced search to broaden the search criteria.\r\n\r\nThe search results can be further filtered by a number of parameters.', '1'),
+(12, 'Can I save my search?', 'As a valued subscriber of wedding bliss, you can use our Advanced Search parameters to filter matching members based on your preferences. These search preferences can be saved to your profile, allowing you to quickly fetch matches without manually reselecting your criteria.', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lifestyle_tbl`
+--
+
+CREATE TABLE `lifestyle_tbl` (
+  `lifestyle_id` int(4) NOT NULL,
+  `member_detail_id` int(4) NOT NULL,
+  `bloodgroup` varchar(15) NOT NULL,
+  `hobbies_interest` varchar(200) NOT NULL,
+  `member_diet` varchar(20) NOT NULL,
+  `language_known` varchar(200) NOT NULL,
+  `residential_status` text NOT NULL,
+  `smoking_habbits` varchar(150) NOT NULL,
+  `drinking_habbits` varchar(15) NOT NULL,
+  `vehicles_having` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `lifestyle_tbl`
+--
+
+INSERT INTO `lifestyle_tbl` (`lifestyle_id`, `member_detail_id`, `bloodgroup`, `hobbies_interest`, `member_diet`, `language_known`, `residential_status`, `smoking_habbits`, `drinking_habbits`, `vehicles_having`) VALUES
+(32, 98, 'A+', 'Books Reading,Watching,Movies', 'Veg', 'Gujarati,English,Kannad,Marathi', 'Purple orchids flats, pal', 'Occasionaly', 'Occasionaly', '3'),
+(33, 99, 'B-', 'Cooking,Hangout with Family,Modelling', 'Non-Veg', 'English,Kannad', 'Pearl residency', 'NO', 'NO', '2'),
+(35, 101, 'O-', 'Books Reading,Yoga,Volleyball', 'Veg', 'English,Hindi,Punjabi', 'Krishna flats', 'NO', 'Occasionaly', '1'),
+(37, 103, 'B+', 'Yoga', 'Non-Veg', 'Kannad', 'New Mumbai', 'Occasionaly', 'Occasionaly', '1'),
+(38, 104, 'O-', 'Books Reading,Modelling', 'Any', 'Gujarati,English,Hindi,Marathi', 'Navi Mumbai Near Marin Drive', 'Occasionaly', 'Occasionaly', '1'),
+(39, 105, 'O-', 'Adventure Travel,Books Reading,Volleyball', 'Non-Veg', 'Gujarati,English,Hindi', 'Jangirpura,Umra', 'Occasionally', 'Occasionally', '1'),
+(40, 106, 'A+', 'Modelling', 'Any', 'Hindi', 'keval', 'Occasionally', 'Occasionally', '1');
 
 -- --------------------------------------------------------
 
@@ -248,738 +194,357 @@ CREATE TABLE `login_details` (
 --
 
 INSERT INTO `login_details` (`login_details_id`, `user_id`, `last_activity`, `is_type`) VALUES
-(10, 162, '2021-06-23 08:12:43', 'no'),
-(11, 168, '2021-06-23 08:14:05', 'no'),
-(12, 165, '2021-06-23 06:52:03', 'no'),
-(13, 103, '2021-06-23 08:15:51', 'no'),
-(14, 168, '2021-06-23 08:15:48', 'no'),
-(15, 103, '2021-06-23 08:18:13', 'no'),
-(16, 169, '2021-06-23 08:49:59', 'no'),
-(17, 103, '2021-06-23 08:49:59', 'no'),
-(18, 162, '2021-06-23 14:43:27', 'no'),
-(19, 103, '2021-06-23 13:51:43', 'no'),
-(20, 168, '2021-06-23 13:52:08', 'no'),
-(21, 103, '2021-06-23 14:43:33', 'no'),
-(22, 162, '2021-06-23 18:34:51', 'no'),
-(23, 168, '2021-06-23 17:59:41', 'no'),
-(24, 103, '2021-06-23 19:45:38', 'no'),
-(25, 162, '2021-06-23 19:52:14', 'no'),
-(26, 162, '2021-06-23 19:55:47', 'no'),
-(27, 162, '2021-06-23 19:56:45', 'no'),
-(28, 103, '2021-06-24 04:52:04', 'no'),
-(29, 103, '2021-06-24 05:03:16', 'no'),
-(30, 103, '2021-06-24 05:38:08', 'no'),
-(31, 103, '2021-06-24 05:38:19', 'no'),
-(32, 172, '2021-06-24 05:52:12', 'no'),
-(33, 168, '2021-06-24 08:31:22', 'no'),
-(34, 103, '2021-06-24 08:31:20', 'no'),
-(35, 103, '2021-06-24 08:31:19', 'no'),
-(36, 162, '2021-06-24 18:38:49', 'no'),
-(37, 168, '2021-06-24 18:39:32', 'no'),
-(38, 103, '2021-06-24 18:39:47', 'no'),
-(39, 103, '2021-06-24 18:42:30', 'no'),
-(40, 169, '2021-06-24 18:42:48', 'no'),
-(41, 161, '2021-06-24 18:42:59', 'no'),
-(42, 103, '2021-06-24 19:20:49', 'no'),
-(43, 169, '2021-06-25 09:31:50', 'no'),
-(44, 168, '2021-06-25 09:47:00', 'no'),
-(45, 187, '2021-06-25 09:48:23', 'no'),
-(46, 180, '2021-06-25 09:50:13', 'no'),
-(47, 162, '2021-06-25 09:52:52', 'no'),
-(48, 168, '2021-06-25 09:54:14', 'no'),
-(49, 168, '2021-06-25 10:37:32', 'no'),
-(50, 103, '2021-06-25 09:54:30', 'no'),
-(51, 103, '2021-06-25 10:13:27', 'no'),
-(52, 103, '2021-06-25 10:38:44', 'no'),
-(53, 103, '2021-06-25 10:41:41', 'no'),
-(54, 103, '2021-06-25 10:43:59', 'no'),
-(55, 103, '2021-06-25 10:44:09', 'no'),
-(56, 103, '2021-06-25 11:50:54', 'no'),
-(57, 103, '2021-06-25 13:30:32', 'no'),
-(58, 103, '2021-06-25 14:44:00', 'no'),
-(59, 103, '2021-06-25 17:20:53', 'no'),
-(60, 103, '2021-06-25 17:21:02', 'no'),
-(61, 103, '2021-06-25 17:22:06', 'no'),
-(62, 103, '2021-06-25 17:22:14', 'no'),
-(63, 162, '2021-06-25 17:25:29', 'no'),
-(64, 103, '2021-06-25 17:25:56', 'no'),
-(65, 103, '2021-06-25 17:34:14', 'no'),
-(66, 103, '2021-06-25 17:35:56', 'no'),
-(67, 103, '2021-06-25 17:36:01', 'no'),
-(68, 103, '2021-06-25 17:50:01', 'no'),
-(69, 168, '2021-06-25 17:49:08', 'no'),
-(70, 162, '2021-06-25 17:50:44', 'no'),
-(71, 170, '2021-06-25 17:56:58', 'no'),
-(72, 162, '2021-06-25 18:02:35', 'no'),
-(73, 188, '2021-06-25 18:03:25', 'no'),
-(74, 164, '2021-06-25 18:03:51', 'no'),
-(75, 162, '2021-06-25 18:04:43', 'no'),
-(76, 172, '2021-06-25 18:05:17', 'no'),
-(77, 194, '2021-06-25 18:05:59', 'no'),
-(78, 162, '2021-06-25 18:06:28', 'no'),
-(79, 195, '2021-06-25 18:09:29', 'no'),
-(80, 193, '2021-06-25 18:09:56', 'no'),
-(81, 173, '2021-06-25 18:10:50', 'no'),
-(82, 103, '2021-06-25 18:12:23', 'no'),
-(83, 168, '2021-06-25 18:14:45', 'no'),
-(84, 103, '2021-06-25 19:10:29', 'no'),
-(85, 196, '2021-06-25 19:37:29', 'no'),
-(86, 196, '2021-06-25 19:38:40', 'no'),
-(87, 162, '2021-06-25 19:39:51', 'no'),
-(88, 196, '2021-06-25 19:40:27', 'no'),
-(89, 196, '2021-06-25 19:41:16', 'no');
+(20, 42, '2025-03-09 13:52:39', 'no'),
+(21, 42, '2025-03-09 14:22:40', 'no'),
+(22, 39, '2025-03-09 15:01:31', 'no'),
+(23, 39, '2025-03-10 04:06:43', 'no'),
+(24, 39, '2025-03-10 04:26:58', 'no'),
+(25, 39, '2025-03-10 05:34:49', 'no'),
+(26, 39, '2025-03-10 07:13:50', 'no'),
+(27, 40, '2025-03-10 07:15:10', 'no'),
+(28, 39, '2025-03-10 16:46:56', 'no'),
+(29, 45, '2025-03-11 04:35:18', 'no'),
+(30, 44, '2025-03-11 04:44:23', 'no'),
+(31, 44, '2025-03-11 05:00:29', 'no'),
+(32, 44, '2025-03-11 06:59:29', 'no'),
+(33, 44, '2025-03-11 07:09:58', 'no'),
+(34, 44, '2025-03-11 07:10:33', 'no'),
+(35, 44, '2025-03-11 14:46:35', 'no'),
+(36, 39, '2025-03-11 15:04:45', 'no'),
+(37, 46, '2025-03-12 04:17:37', 'no'),
+(38, 42, '2025-03-11 15:06:40', 'no'),
+(39, 39, '2025-03-12 04:23:56', 'no'),
+(40, 39, '2025-03-12 05:52:09', 'no'),
+(41, 39, '2025-03-12 06:06:54', 'no'),
+(42, 39, '2025-03-13 04:59:28', 'no'),
+(43, 39, '2025-03-13 05:03:18', 'no'),
+(44, 39, '2025-03-13 05:20:38', 'no'),
+(45, 44, '2025-03-13 05:21:52', 'no'),
+(46, 39, '2025-03-13 05:26:22', 'no'),
+(47, 39, '2025-03-13 06:30:37', 'no'),
+(48, 44, '2025-03-13 06:37:08', 'no'),
+(49, 39, '2025-03-13 07:08:50', 'no'),
+(50, 39, '2025-03-18 04:30:39', 'no'),
+(51, 39, '2025-03-18 04:34:14', 'no'),
+(52, 39, '2025-03-18 05:13:44', 'no'),
+(53, 47, '2025-03-19 04:29:13', 'no'),
+(54, 47, '2025-03-19 04:36:03', 'no');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `otp_status`
+-- Table structure for table `member_detail_tbl`
 --
 
-CREATE TABLE `otp_status` (
+CREATE TABLE `member_detail_tbl` (
+  `member_detail_id` int(4) NOT NULL,
+  `member_id` int(4) NOT NULL,
+  `member_sub_community_id` int(4) NOT NULL,
+  `member_religion` varchar(25) NOT NULL,
+  `member_with_family` varchar(15) NOT NULL,
+  `member_childrens` varchar(20) NOT NULL,
+  `member_height` float NOT NULL,
+  `member_weight` tinyint(3) NOT NULL,
+  `caste_no_bar` enum('1','0') NOT NULL,
+  `marital_status` varchar(25) NOT NULL,
+  `member_birthplace` varchar(25) NOT NULL,
+  `member_body_type` varchar(15) NOT NULL,
+  `member_complexion` varchar(15) NOT NULL,
+  `member_rashi` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `member_detail_tbl`
+--
+
+INSERT INTO `member_detail_tbl` (`member_detail_id`, `member_id`, `member_sub_community_id`, `member_religion`, `member_with_family`, `member_childrens`, `member_height`, `member_weight`, `caste_no_bar`, `marital_status`, `member_birthplace`, `member_body_type`, `member_complexion`, `member_rashi`) VALUES
+(98, 39, 10, 'Hindu', 'no', '1', 5.8, 55, '1', 'Awaiting', 'Surat', 'Normal', 'Brown', 'Mesh'),
+(99, 40, 8, 'Hindu', 'yes', '1', 5.1, 40, '1', 'Divorced', 'Ahemdabad', 'Skinny', 'Normal', 'Vrischika'),
+(101, 42, 10, 'Parsi', 'yes', '1', 4.8, 45, '1', 'Separated', 'Pune ', 'Normal', 'Normal', 'Varishabha'),
+(103, 44, 11, 'Jain', 'no', '1', 7.7, 60, '1', 'Divorced', 'Mumbai', 'Normal', 'Normal', 'Mithuna'),
+(104, 45, 9, 'Buddhist', 'no', '1', 6.6, 66, '0', 'Single', 'Surat', 'Fat', 'Brown', 'Mesh'),
+(105, 46, 11, 'Parsi', 'no', '1', 6.7, 39, '0', 'Separated', 'Tinsukia', 'Skinny', 'Normal', 'Karka'),
+(106, 47, 9, 'Christian', 'yes', '1', 6.1, 70, '1', 'Single', 'Surat', 'Skinny', 'Brown', 'Mithuna');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_qualification_tbl`
+--
+
+CREATE TABLE `member_qualification_tbl` (
+  `member_qualification_id` int(4) NOT NULL,
+  `member_detail_id` int(4) NOT NULL,
+  `member_qualification` varchar(50) NOT NULL,
+  `member_work_with` varchar(50) NOT NULL,
+  `member_occupation` varchar(50) NOT NULL,
+  `member_designation` varchar(50) NOT NULL,
+  `member_company_name` varchar(150) NOT NULL,
+  `member_income` double NOT NULL,
+  `member_description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `member_qualification_tbl`
+--
+
+INSERT INTO `member_qualification_tbl` (`member_qualification_id`, `member_detail_id`, `member_qualification`, `member_work_with`, `member_occupation`, `member_designation`, `member_company_name`, `member_income`, `member_description`) VALUES
+(55, 98, 'M.B.B.S.', 'Government', 'Doctor', 'Other', 'MMM', 500000, 'hi hello my name is jay...'),
+(56, 99, 'B.B.A', 'Government', 'Librarian', 'Accountant', 'Tata', 300000, 'helloo hiee....'),
+(58, 101, 'M.com', 'Self Employee', 'Social Worker', 'Clerk', 'MMM', 20000, 'gvhvkmjnk,jbjhcghvkjn,kngchjblknhjvhhhhhhhhhhhhhhh'),
+(60, 103, 'M.B.A', 'Self Employee', 'Social Worker', 'Other', 'LNT', 900000, 'Test'),
+(61, 104, 'B.com', 'Self Employee', 'Doctor', 'Accountant', 'Kiya', 760000, 'Testt'),
+(62, 105, 'L.L.B.', 'Government', 'Other', 'Other', 'Court', 890000, 'TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT'),
+(63, 106, 'B.C.A', 'Private', 'Doctor', '', 'ni kev', 200000, 'sjbdjbwljbcqebjlqbjlbjlb');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member_tbl`
+--
+
+CREATE TABLE `member_tbl` (
+  `member_id` int(4) NOT NULL,
+  `member_city` int(4) DEFAULT NULL,
+  `member_image` varchar(50) DEFAULT NULL,
+  `member_firstname` varchar(30) DEFAULT NULL,
+  `member_lastname` varchar(30) DEFAULT NULL,
+  `member_adhar_id` varchar(30) DEFAULT NULL,
+  `member_contact` varchar(16) DEFAULT NULL,
+  `member_email` varchar(100) NOT NULL,
+  `member_password` varchar(30) DEFAULT NULL,
+  `member_profile_for` varchar(15) DEFAULT NULL,
+  `member_looking_for` varchar(20) DEFAULT NULL,
+  `member_gender` varchar(6) DEFAULT NULL,
+  `member_dob` date DEFAULT NULL,
+  `member_profile_id` varchar(50) DEFAULT NULL,
+  `member_age` int(3) DEFAULT NULL,
+  `member_min_age` int(5) DEFAULT NULL,
+  `member_max_age` int(5) DEFAULT NULL,
+  `registration_date` date DEFAULT NULL,
+  `member_status` enum('1','0') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `member_tbl`
+--
+
+INSERT INTO `member_tbl` (`member_id`, `member_city`, `member_image`, `member_firstname`, `member_lastname`, `member_adhar_id`, `member_contact`, `member_email`, `member_password`, `member_profile_for`, `member_looking_for`, `member_gender`, `member_dob`, `member_profile_id`, `member_age`, `member_min_age`, `member_max_age`, `registration_date`, `member_status`) VALUES
+(39, 6, '202503180531496.jpg', 'Jay', 'Rathod', '123456789990', '7990472366', 'jay12@gmail.com', '12345', 'Son', 'Female', 'Male', '1999-02-10', '2025541002', 26, 20, 27, '2025-03-03', '1'),
+(40, 8, 'member4.jpg', 'Dency', 'Shetty', '123456789012', '9913673607', 'dency15@gmail.com', '12345', 'Myself', 'Male', 'Female', '2000-02-01', '2025180102', 21, 22, 26, '2025-03-03', '1'),
+(42, 9, 'member9.jpg', 'Meet', 'Mithaiwala', '123456789997', '9913673607', 'meet23@gmail.com', '12345', 'Brother', 'Female', 'Male', '2002-06-28', '2025042806', 22, 21, 26, '2025-03-03', '1'),
+(44, 7, 'member3.jpg', 'Jenny', 'Daruwala', '123455432186', '9090215926', 'jenny0506@gmail.com', '12345', 'Daughter', 'Male', 'Female', '2001-11-05', '2025020511', 23, 25, 29, '2025-03-04', '0'),
+(45, 7, 'member5.jpg', 'Veera', 'Desai', '123456769997', '9979561316', 'veera@gmail.com', '12345', 'Daughter', 'Male', 'Female', '2000-11-15', '2025201511', 24, 22, 26, '2025-03-06', '1'),
+(46, 6, 'member6.jpg', 'Pooja', 'Tripathi', '683921640867', '8686412248', 'poojatripathi@gmail.com', '12345', 'Daughter', 'Male', 'Female', '1994-05-31', '2025353105', 30, 31, 35, '2025-03-11', '1'),
+(47, 8, '202503190529146.jpg', 'keval', 'bhav', '123456789090', '2233445566', 'kevalbhavsar2712@gmail.com', '12345', 'Son', 'Female', 'Male', '2004-12-16', '2025291612', 20, 25, 30, '2025-03-12', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `otp_status_tbl`
+--
+
+CREATE TABLE `otp_status_tbl` (
   `id` int(11) NOT NULL,
   `otp` int(11) NOT NULL,
-  `status` enum('0','1') NOT NULL,
-  `create_at` varchar(50) NOT NULL
+  `otp_status` enum('1','0') NOT NULL,
+  `create_at` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `otp_status`
+-- Dumping data for table `otp_status_tbl`
 --
 
-INSERT INTO `otp_status` (`id`, `otp`, `status`, `create_at`) VALUES
-(18, 702219, '1', '1735374106'),
-(19, 293639, '1', '1735374441'),
-(20, 567681, '1', '1735374447'),
-(21, 900470, '1', '1735375226'),
-(22, 744339, '1', '1735375806'),
-(23, 875211, '1', '1735376089'),
-(24, 417731, '1', '1735376264'),
-(25, 804516, '1', '1735376463'),
-(26, 625167, '1', '1735376468'),
-(27, 354744, '1', '1735376474'),
-(28, 993762, '1', '1735376479'),
-(29, 662066, '1', '1735376485'),
-(30, 958915, '1', '1735376490'),
-(31, 278651, '1', '1735376495'),
-(32, 785966, '1', '1735376500'),
-(33, 550027, '1', '1735376505'),
-(34, 620454, '1', '1735376510'),
-(35, 429869, '1', '1735376526'),
-(36, 712653, '1', '1737620003'),
-(37, 210501, '1', '1737620070'),
-(38, 362916, '1', '1737620141'),
-(39, 771579, '1', '1738644324'),
-(40, 842209, '1', '1738644346'),
-(41, 736057, '1', '1738644393'),
-(42, 288910, '1', '1738644522');
+INSERT INTO `otp_status_tbl` (`id`, `otp`, `otp_status`, `create_at`) VALUES
+(1, 412838, '1', '1741760966'),
+(2, 335664, '1', '1741761335'),
+(3, 276327, '1', '1741761349'),
+(4, 173084, '1', '1741761735'),
+(5, 958538, '1', '1741761796'),
+(6, 486143, '1', '1741761848'),
+(7, 785167, '1', '1741762097');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `states`
+-- Table structure for table `package_detail_tbl`
 --
 
-CREATE TABLE `states` (
-  `id` int(11) NOT NULL,
-  `name` varchar(500) NOT NULL,
-  `status` enum('1','0') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `package_detail_tbl` (
+  `package_detail_id` int(4) NOT NULL,
+  `package_id` int(4) NOT NULL,
+  `member_id` int(11) NOT NULL,
+  `payment_id` int(11) NOT NULL,
+  `purchase_date` date NOT NULL,
+  `package_exp_date` date NOT NULL,
+  `package_detail_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `states`
+-- Dumping data for table `package_detail_tbl`
 --
 
-INSERT INTO `states` (`id`, `name`, `status`) VALUES
-(1, 'ANDHRA PRADESH', '1'),
-(2, 'ASSAM', '1'),
-(3, 'ARUNACHAL PRADESH', '1'),
-(4, 'BIHAR', '1'),
-(5, 'GUJRAT', '1'),
-(6, 'HARYANA', '1'),
-(7, 'HIMACHAL PRADESH', '1'),
-(8, 'JAMMU & KASHMIR', '1'),
-(9, 'KARNATAKA', '1'),
-(10, 'KERALA', '1'),
-(11, 'MADHYA PRADESH', '1'),
-(12, 'MAHARASHTRA', '1'),
-(13, 'MANIPUR', '1'),
-(14, 'MEGHALAYA', '1'),
-(15, 'MIZORAM', '1'),
-(16, 'NAGALAND', '1'),
-(17, 'ORISSA', '1'),
-(18, 'PUNJAB', '1'),
-(19, 'RAJASTHAN', '1'),
-(20, 'SIKKIM', '1'),
-(21, 'TAMIL NADU', '1'),
-(22, 'TRIPURA', '1'),
-(23, 'UTTAR PRADESH', '1'),
-(24, 'WEST BENGAL', '1'),
-(25, 'DELHI', '1'),
-(26, 'GOA', '1'),
-(27, 'PONDICHERY', ''),
-(28, 'LAKSHDWEEP', '1'),
-(29, 'DAMAN & DIU', '1'),
-(30, 'DADRA & NAGAR', '1'),
-(31, 'CHANDIGARH', '1'),
-(32, 'ANDAMAN & NICOBAR', '1'),
-(33, 'UTTARANCHAL', '1'),
-(34, 'JHARKHAND', '1'),
-(35, 'CHATTISGARH', '1');
+INSERT INTO `package_detail_tbl` (`package_detail_id`, `package_id`, `member_id`, `payment_id`, `purchase_date`, `package_exp_date`, `package_detail_status`) VALUES
+(13, 7, 45, 1, '2025-03-06', '2025-04-06', 1),
+(15, 6, 40, 2, '2025-03-06', '2025-05-06', 1),
+(16, 5, 42, 3, '2025-03-06', '2025-06-06', 1),
+(18, 7, 45, 5, '2025-03-11', '2025-04-11', 1),
+(21, 7, 44, 8, '2025-03-11', '2025-04-11', 1),
+(22, 6, 46, 9, '2025-03-11', '2025-05-11', 1),
+(23, 5, 47, 10, '2025-03-12', '2025-06-12', 1),
+(24, 5, 39, 11, '2025-03-18', '2025-06-18', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_admin`
+-- Table structure for table `package_tbl`
 --
 
-CREATE TABLE `tbl_admin` (
-  `Admin_ID` int(3) NOT NULL,
-  `Admin_Name` varchar(20) NOT NULL,
-  `Admin_Email` varchar(30) NOT NULL,
-  `Admin_Password` varchar(60) NOT NULL,
-  `Admin_Contact` bigint(10) NOT NULL,
-  `Admin_City` varchar(8) NOT NULL,
-  `Admin_Status` enum('1','0') NOT NULL
+CREATE TABLE `package_tbl` (
+  `package_id` int(4) NOT NULL,
+  `package_name` varchar(20) NOT NULL,
+  `package_price` int(10) NOT NULL,
+  `package_duration` varchar(20) NOT NULL,
+  `package_status` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_admin`
+-- Dumping data for table `package_tbl`
 --
 
-INSERT INTO `tbl_admin` (`Admin_ID`, `Admin_Name`, `Admin_Email`, `Admin_Password`, `Admin_Contact`, `Admin_City`, `Admin_Status`) VALUES
-(4, 'Keval', 'kevalbhavsar2712@gmail.com', '123456', 9313282029, 'surat', '1');
+INSERT INTO `package_tbl` (`package_id`, `package_name`, `package_price`, `package_duration`, `package_status`) VALUES
+(5, 'Gold', 5000, '3', '1'),
+(6, 'Silver', 2000, '2', '1'),
+(7, 'Platinum', 500, '1', '1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_city`
+-- Table structure for table `payment_tbl`
 --
 
-CREATE TABLE `tbl_city` (
-  `City_ID` int(12) NOT NULL,
-  `City_Name` varchar(25) NOT NULL,
-  `State_ID` int(4) NOT NULL
+CREATE TABLE `payment_tbl` (
+  `payment_id` int(11) NOT NULL,
+  `razorpay_payment_id` varchar(100) NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `payment_status` enum('pending','success','failed') DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_city`
+-- Dumping data for table `payment_tbl`
 --
 
-INSERT INTO `tbl_city` (`City_ID`, `City_Name`, `State_ID`) VALUES
-(17, 'Jalandhar', 13),
-(18, 'Chandigarh', 5),
-(19, 'Tirupati', 1),
-(21, 'Surat', 11),
-(22, 'Vapi', 2),
-(23, 'Nalanda', 6),
-(24, 'Huddia', 6),
-(25, 'vadodra', 2),
-(26, 'Ahemdabad', 2),
-(27, 'Bhuj', 2),
-(28, 'Kim', 15),
-(29, 'Ankleshwar', 10),
-(30, 'Visakhapatnam', 1),
-(31, 'Kadapa', 1),
-(32, 'Kakinada', 1),
-(33, 'Guntur', 1),
-(34, 'Bhopal', 14),
-(35, 'Indor', 4),
-(36, 'Jabalpur', 14),
-(37, 'ujjain', 4),
-(38, 'Khandwa', 4),
-(39, 'Rewa', 4),
-(40, 'Betul', 4),
-(41, 'Udhampur', 3),
-(42, 'Katuha', 3),
-(43, 'Poonch', 3),
-(44, 'Pulwama', 3),
-(45, 'Kulgam', 3),
-(46, 'Kupwara', 3),
-(47, 'Panaji', 9),
-(48, 'Mapusa', 9),
-(49, 'Anjuna', 9),
-(50, 'Valpoi', 9),
-(51, 'Guwahati', 7),
-(52, 'Jorhat', 7),
-(53, 'Tezpur', 7),
-(54, 'Tinsukia', 7),
-(55, 'Tura', 7),
-(56, 'Kochi', 12),
-(57, 'Kollam', 12),
-(58, 'Kannur', 12),
-(59, 'Malappuram', 12),
-(60, 'Tirur', 12),
-(61, 'Nainital', 14),
-(62, 'Rishikesh', 14),
-(63, 'Almora', 14),
-(64, 'Kashipur', 14),
-(65, 'Ramnagar', 14),
-(66, 'Pune', 1),
-(69, 'Nashik', 13),
-(70, 'Mumbai', 13),
-(71, 'Nagpur', 13),
-(72, 'Solapur', 13),
-(73, 'Akola', 13),
-(74, 'Thane', 13),
-(75, 'Ahmadnagar', 13),
-(76, 'Kolkata', 15),
-(77, 'Durgapur', 15),
-(78, 'Howrah', 15),
-(79, 'Haldia', 15),
-(80, 'Kharagpur', 15),
-(81, 'Burdwan', 15),
-(82, 'Ludhiana', 5),
-(83, 'Amritsar', 5),
-(84, 'Patiala', 5),
-(85, 'Firozpur', 5);
+INSERT INTO `payment_tbl` (`payment_id`, `razorpay_payment_id`, `total_amount`, `payment_status`, `created_at`) VALUES
+(1, 'pay_Q3OrfiPCPRI9Zz', 500.00, 'success', '2025-03-06 06:07:17'),
+(2, 'pay_Q3YacPUXl2FDcn', 2000.00, 'success', '2025-03-06 15:38:03'),
+(3, 'pay_Q3YkAvRCVTG5iV', 5000.00, 'success', '2025-03-06 15:47:06'),
+(4, 'pay_Q3Zw6o3TXMhSVc', 500.00, 'success', '2025-03-06 16:57:04'),
+(5, 'pay_Q5Lz7s9jZTbTe0', 500.00, 'success', '2025-03-11 04:36:14'),
+(8, 'pay_Q5MS7uTDsYXPSV', 500.00, 'success', '2025-03-11 05:04:14'),
+(9, 'pay_Q5WbnamaO59sVQ', 2000.00, 'success', '2025-03-11 14:59:50'),
+(10, 'pay_Q5lynefvAu1ysy', 5000.00, 'success', '2025-03-12 06:02:15'),
+(11, 'pay_Q87dWPvXasfRlD', 5000.00, 'success', '2025-03-18 04:31:20');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_community`
+-- Table structure for table `send_request_tbl`
 --
 
-CREATE TABLE `tbl_community` (
-  `Community_ID` int(4) NOT NULL,
-  `Community_Name` varchar(15) NOT NULL,
-  `Community_Status` enum('1','0') NOT NULL
+CREATE TABLE `send_request_tbl` (
+  `request_id` int(4) NOT NULL,
+  `member_id` int(4) NOT NULL,
+  `send_request_id` text NOT NULL,
+  `request_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_community`
+-- Dumping data for table `send_request_tbl`
 --
 
-INSERT INTO `tbl_community` (`Community_ID`, `Community_Name`, `Community_Status`) VALUES
-(81, 'Marathi', '1'),
-(82, 'Rajasthani', '0'),
-(85, 'Gujarati', '1'),
-(90, 'bhavsar', '1'),
-(91, 'Kannad', '1'),
-(93, 'Punjabi', '0'),
-(96, 'jain', '0'),
-(99, 'tets', '1'),
-(103, 'rishi', '1'),
-(104, 'patel', '1'),
-(108, 'TIWARI', '1'),
-(109, 'vapi', '1');
+INSERT INTO `send_request_tbl` (`request_id`, `member_id`, `send_request_id`, `request_date`) VALUES
+(30, 46, '{\"39\":\"accepted\",\"42\":\"accepted\"}', '2025-03-11 14:56:52'),
+(31, 47, '{\"40\":\"pending\",\"44\":\"pending\",\"45\":\"pending\"}', '2025-03-12 07:01:38'),
+(32, 44, '{\"39\":\"accepted\"}', '2025-03-13 07:31:04'),
+(33, 39, '{\"40\":\"pending\"}', '2025-03-18 05:30:50');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_faq`
+-- Table structure for table `state_tbl`
 --
 
-CREATE TABLE `tbl_faq` (
-  `Faq_ID` int(4) NOT NULL,
-  `Faq_Que` varchar(45) NOT NULL,
-  `Faq_Ans` text NOT NULL,
-  `Faq_Status` enum('1','0') NOT NULL
+CREATE TABLE `state_tbl` (
+  `state_id` int(4) NOT NULL,
+  `state_name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_faq`
+-- Dumping data for table `state_tbl`
 --
 
-INSERT INTO `tbl_faq` (`Faq_ID`, `Faq_Que`, `Faq_Ans`, `Faq_Status`) VALUES
-(17, 'Why do we use it?', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.', '1'),
-(18, 'Where can I get some?', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '1'),
-(19, 'Where does it come from?', 'The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from \"de Finibus Bonorum et Malorum\" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.', '1'),
-(22, 'abdvjqwdvawhckhasbch', 'be oo aeshu taru moduu bandh rakhni betaa plzzz', '0');
+INSERT INTO `state_tbl` (`state_id`, `state_name`) VALUES
+(7, 'Gujarat'),
+(8, 'Maharashtra');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_language`
+-- Table structure for table `sub_community_tbl`
 --
 
-CREATE TABLE `tbl_language` (
-  `Language_ID` int(4) NOT NULL,
-  `Language` varchar(25) NOT NULL,
-  `Language_Status` enum('1','0') NOT NULL
+CREATE TABLE `sub_community_tbl` (
+  `sub_community_id` int(4) NOT NULL,
+  `community_id` int(4) NOT NULL,
+  `sub_community_name` varchar(20) NOT NULL,
+  `sub_community_status` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_language`
+-- Dumping data for table `sub_community_tbl`
 --
 
-INSERT INTO `tbl_language` (`Language_ID`, `Language`, `Language_Status`) VALUES
-(2, 'Hindi', '1'),
-(6, 'Marathi', '1'),
-(35, 'Bhojpuri', '1'),
-(36, 'Gujarati', '1'),
-(41, 'sanskrit', '1');
+INSERT INTO `sub_community_tbl` (`sub_community_id`, `community_id`, `sub_community_name`, `sub_community_status`) VALUES
+(8, 18, 'Patil', '1'),
+(9, 19, 'Surti Gachi', '1'),
+(10, 18, 'Rathod', '1'),
+(11, 19, 'Ahemdabai Gachi', '1');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_lifestyle`
+-- Table structure for table `testimonial_tbl`
 --
 
-CREATE TABLE `tbl_lifestyle` (
-  `Lifestyle_ID` int(4) NOT NULL,
-  `Member_Detail_ID` int(4) NOT NULL,
-  `BloodGroup` varchar(15) DEFAULT NULL,
-  `Hobbies_Intrest` varchar(200) DEFAULT NULL,
-  `Member_Diet` varchar(20) DEFAULT NULL,
-  `Languages_Known` varchar(200) DEFAULT NULL,
-  `Residential_Status` varchar(25) DEFAULT NULL,
-  `Smoking_Habbits` varchar(150) DEFAULT NULL,
-  `Drinking_Habbits` varchar(15) DEFAULT NULL,
-  `Vehicles_Having` varchar(20) DEFAULT NULL
+CREATE TABLE `testimonial_tbl` (
+  `testimonial_id` int(4) NOT NULL,
+  `member_id` int(4) NOT NULL,
+  `testimonial_date` date NOT NULL,
+  `member_contact` bigint(11) NOT NULL,
+  `testimonial_description` text NOT NULL,
+  `testimonial_status` enum('1','0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Dumping data for table `tbl_lifestyle`
+-- Dumping data for table `testimonial_tbl`
 --
 
-INSERT INTO `tbl_lifestyle` (`Lifestyle_ID`, `Member_Detail_ID`, `BloodGroup`, `Hobbies_Intrest`, `Member_Diet`, `Languages_Known`, `Residential_Status`, `Smoking_Habbits`, `Drinking_Habbits`, `Vehicles_Having`) VALUES
-(6, 9, 'A+', 'reading', 'veg', 'Hindi,Gujarati', 'Permenent Reside', 'no', 'no', '2'),
-(35, 540, 'A+', 'Sport,Dance', 'veg', 'Hindi,Gujarati', 'Permenent Reside', 'NO', 'NO', '1'),
-(42, 550, 'B+', 'Music,Reading,Writing', 'Non-Veg', 'Hindi,Gujarati', NULL, 'NO', 'NO', '2'),
-(43, 551, 'A-', 'Music,Sport', 'Any', 'Hindi,Punjabi', NULL, 'NO', 'NO', '2'),
-(44, 552, 'B-', 'Writing', 'Any', 'Telugu,Urdu', NULL, 'NO', 'NO', '1'),
-(51, 559, 'A+', 'Music,Sport', 'Non-Veg', 'Hindi,Gujarati', NULL, 'Occasionaly', 'Occasionaly', '2'),
-(54, 564, 'O+', 'Sport,Reading', 'Any', 'Hindi,Gujarati,Marathi', NULL, 'Occasionaly', 'NO', '2'),
-(55, 565, 'A+', 'Music,Sport,Dance', 'Veg', 'Hindi,Gujarati', NULL, 'NO', 'NO', '2'),
-(58, 570, 'O+', 'Music,Sport,Writing', 'Any', 'Hindi,Urdu,Punjabi', NULL, 'Occasionaly', 'Occasionaly', '2'),
-(59, 571, 'O+', 'Music,Sport,Reading', 'Any', 'Hindi,Gujarati,Punjabi', NULL, 'Occasionaly', 'Occasionaly', '2'),
-(60, 572, 'O-', 'Music,Sport,Reading', 'Non-Veg', 'Hindi,Gujarati', NULL, 'Occasionaly', 'Occasionaly', '2'),
-(61, 573, 'O+', 'Music,Dance,Reading', 'Any', 'Hindi,Gujarati,Punjabi', NULL, 'Occasionaly', 'NO', '3');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_member`
---
-
-CREATE TABLE `tbl_member` (
-  `Member_ID` int(4) NOT NULL,
-  `Member_City` int(4) DEFAULT NULL,
-  `Member_Image` varchar(50) DEFAULT NULL,
-  `Member_Firstname` varchar(30) DEFAULT NULL,
-  `Member_Lastname` varchar(30) DEFAULT NULL,
-  `Member_Adhar_ID` varchar(30) DEFAULT NULL,
-  `Member_Contact` varchar(16) DEFAULT NULL,
-  `Member_Email` varchar(100) NOT NULL,
-  `Member_Password` varchar(30) DEFAULT NULL,
-  `Member_Profile_For` varchar(15) DEFAULT NULL,
-  `Member_Looking_For` varchar(20) DEFAULT NULL,
-  `Member_Gender` varchar(6) DEFAULT NULL,
-  `Member_DOB` date DEFAULT NULL,
-  `Member_Profile_ID` varchar(50) DEFAULT NULL,
-  `Member_Age` int(3) DEFAULT NULL,
-  `Member_Min_Age` int(5) DEFAULT NULL,
-  `Member_Max_Age` int(5) DEFAULT NULL,
-  `Registration_Date` date DEFAULT NULL,
-  `Member_Status` enum('1','0') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_member`
---
-
-INSERT INTO `tbl_member` (`Member_ID`, `Member_City`, `Member_Image`, `Member_Firstname`, `Member_Lastname`, `Member_Adhar_ID`, `Member_Contact`, `Member_Email`, `Member_Password`, `Member_Profile_For`, `Member_Looking_For`, `Member_Gender`, `Member_DOB`, `Member_Profile_ID`, `Member_Age`, `Member_Min_Age`, `Member_Max_Age`, `Registration_Date`, `Member_Status`) VALUES
-(103, 17, '202106230206396.jpg', 'Divya', 'Sharma', '212545454', '987754', 'rahul@gmail.com', '1234', 'Sister', 'Man', 'Female', '2021-02-02', '1542019', 20, 0, 0, '2021-02-10', '1'),
-(161, 21, '20210607112909men6.jpg', 'Sonu', 'Sahani', '983465983465', '93847', 'veer05@gmail.com', '1234', 'Brother', 'Woman', 'Male', '2012-05-10', '2021571005', 21, 22, 25, NULL, '1'),
-(162, 18, '202106101203095.jpg', 'Dev', 'Vegda', '235345345', '859846523', 'dev123@gmail.com', '1234', 'self', 'Woman', 'male', '2020-07-01', '202111105', 23, 20, 23, '2021-06-03', '1'),
-(164, 23, '20210625113356a6.jpg', 'Riya', 'Sharma', '4564564564', '353453', 'Riya123@gmail.com', '1234', 'self', 'Man', 'Female', '2020-01-16', '202155110', 21, 22, 25, '2021-06-02', '1'),
-(165, 19, '20210608124830woman4.jpg', 'Neha', 'Rathi', NULL, NULL, 'raj0123@gmail.com', '1234', 'Sister', 'Man', 'Female', '2019-07-10', '202105115', 19, 20, 23, '2021-05-12', '1'),
-(168, 21, '20210617014034men5.jpg', 'Vats', 'Chauhan', NULL, '9874563210', 'vatschauhan05@gmail.com', '1234', 'Myself', 'Woman', 'Male', '2000-03-12', '2021330312', 21, 19, 21, NULL, '1'),
-(169, 21, '20210608125111Men(1).jpg', 'Mihir', 'solanki', NULL, NULL, 'jeffy123@gmail.com', '1234', 'Brother', 'Woman', 'Male', '2019-04-25', '2021552504', 20, 18, 25, '2021-06-06', '1'),
-(170, 25, '20210625112512a1.jpg', 'Mahima', 'Shah', NULL, NULL, 'neel123@gmail.com', '1234', 'Sister', 'Man', 'Female', '2018-08-15', '2021561508', 19, 20, 23, '2021-06-06', '1'),
-(172, 25, '20210625113512p2.jpg', 'Jeel', 'Maali', NULL, NULL, 'jeel123@gmail.com', '1234', 'Myself', 'Man', 'Female', '1998-12-23', '2021422312', 22, 21, 24, '2021-06-06', '1'),
-(173, 18, '20210625114045a5.jpg', 'Max', 'kartel', NULL, NULL, 'max123@gmail.com', '1234', 'Son', 'Woman', 'Male', '1999-06-10', '2021271006', 22, 21, 24, '2021-06-06', '1'),
-(174, 19, '1.jpg', 'Sonu', 'Mehta', NULL, NULL, 'sonu123@gmail.com', '1234', 'Daughter', 'Man', 'Male', '1997-02-15', '2021401502', 22, 18, 22, '2021-06-07', '1'),
-(180, 23, '202106081130254.jpg', 'Jeenal', 'Parmar', NULL, '9852864521', 'jeenal123@gmail.com', '1234', 'Myself', 'Man', 'Female', '1998-04-13', '2021291304', 22, 20, 22, '2021-06-08', '1'),
-(182, 21, '202106090755323.jpg', 'aasish', 'kumar', '8767867979779787', '863485686', 'bhavik@gmail.com', '123', 'Brother', 'Woman', 'Male', '2000-10-24', '2021392410', 26, 21, 26, '2021-06-09', '1'),
-(184, 21, '202106110147073.jpg', 'vats', 'chauhan', '2642844751134554', '789654123', 'vatschauhan122@gmail.com', '1234', 'Brother', 'Woman', 'Male', '2000-01-11', '2021531101', 24, 20, 23, '2021-06-11', '1'),
-(188, 26, '20210625113320a8.jpg', 'Nirali', 'Shah', '', '9874563242', 'mega123@gmail.com', '1234', 'Daughter', 'Man', 'Female', '1999-11-10', '2021001011', 23, 22, 25, '2021-06-19', '1'),
-(189, 22, 'image_placeholder.jpg', 'satyam', 'sahani', '4458830152581234', '9427139966', 'sahanisatyam123@gmail.com', 'satyam123', 'Brother', 'Woman', 'Male', '1999-07-07', '2021010707', 21, 21, 22, '2021-06-23', '1'),
-(193, 71, '20210625114001a2.jpg', 'Ajay', 'Nagar', '', '', 'mohit123@gmail.com', '1234', 'Son', 'Woman', 'Male', '1998-06-11', '2021431106', 22, 20, 25, '2021-06-25', '1'),
-(194, 37, '20210625113554p4.jpg', 'Janvi', 'Barod', '', '', 'meera123@gmail.com', '1234', 'Sister', 'Man', 'Female', '1998-08-03', '2021510308', 26, 22, 26, '2021-06-25', '1'),
-(195, 38, '20210625113658p14.jpg', 'Roochi', 'Roy', '', '', 'roochi123@gmail.com', '1234', 'Myself', 'Man', 'Female', '1998-07-10', '2021411007', 21, 20, 24, '2021-06-25', '1'),
-(196, 82, '202106260105001.jpg', 'Pinkal', 'Makwana', '123456789122', '1234567892', 'pinkal123@gmail.com', '1234', 'Myself', 'Woman', 'Male', '1998-08-04', '2021030408', 22, 20, 23, '2021-06-26', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_member_detail`
---
-
-CREATE TABLE `tbl_member_detail` (
-  `Member_Detail_ID` int(4) NOT NULL,
-  `Member_ID` int(4) DEFAULT NULL,
-  `Member_Sub_Community_ID` int(4) DEFAULT NULL,
-  `Member_Religion` varchar(25) DEFAULT NULL,
-  `Language_ID` int(4) DEFAULT NULL,
-  `Member_With_Family` varchar(15) DEFAULT NULL,
-  `Member_Childrens` varchar(20) DEFAULT NULL,
-  `Member_Height` float DEFAULT NULL,
-  `Member_Weight` tinyint(3) DEFAULT NULL,
-  `Caste_No_Bar` enum('1','0') DEFAULT NULL,
-  `Marital_Status` varchar(25) DEFAULT NULL,
-  `Member_Birthplace` varchar(25) DEFAULT NULL,
-  `Member_Body_Type` varchar(15) DEFAULT NULL,
-  `Member_Complexion` varchar(15) DEFAULT NULL,
-  `Member_Rashi` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_member_detail`
---
-
-INSERT INTO `tbl_member_detail` (`Member_Detail_ID`, `Member_ID`, `Member_Sub_Community_ID`, `Member_Religion`, `Language_ID`, `Member_With_Family`, `Member_Childrens`, `Member_Height`, `Member_Weight`, `Caste_No_Bar`, `Marital_Status`, `Member_Birthplace`, `Member_Body_Type`, `Member_Complexion`, `Member_Rashi`) VALUES
-(9, 103, 20, 'Hindu', 2, 'no', '0', 5.7, 65, '1', 'single', 'Bhuj', 'Slim', 'Brown', 'Meethun'),
-(540, 162, 20, 'Hindu', 36, 'Yes', '0', 5.1, 60, '1', 'Single', 'Surat', 'Slim', 'Brown', 'Kumbha'),
-(550, 172, 20, 'Hindu', NULL, 'yes', '1', 5.1, 55, '1', 'Single', 'DIu', 'skinny', 'brown', 'Mesh'),
-(551, 173, 20, 'Jain', NULL, 'yes', '1', 5.3, 65, '0', 'Single', 'Mehsana', 'fat', 'dark', 'Makara'),
-(552, 174, 20, 'Sikh', NULL, 'yes', '1', 5.3, 65, '0', 'Single', 'Mau', 'fat', 'dark', 'Dhanur'),
-(559, 182, 24, 'Muslim', NULL, 'yes', '2', 5.1, 60, '0', 'Awaiting', 'surat', 'fat', 'dark', 'Makara'),
-(564, 188, 23, 'Christian', NULL, 'yes', '1', 5.2, 60, '0', 'Separated', 'Mumbai', 'skinny', 'brown', 'Kanya'),
-(565, 189, 23, 'Hindu', NULL, 'yes', '1', 5.2, 50, '0', 'Single', 'maunath', 'skinny', 'dark', 'Kanya'),
-(570, 193, 38, 'Parsi', NULL, 'yes', '2', 5.3, 85, NULL, 'Divorced', 'Ghorkhpur', 'fat', 'brown', 'Dhanur'),
-(571, 194, 36, 'Buddhist', NULL, 'yes', '2', 5.6, 70, NULL, 'Divorced', 'jainpur', 'fat', 'brown', 'Tula'),
-(572, 195, 35, 'Muslim', NULL, 'yes', '2', 5.7, 65, NULL, 'Divorced', 'Kolapur', 'skinny', 'brown', 'Dhanur'),
-(573, 196, 47, 'Sikh', NULL, 'yes', '2', 5.4, 70, NULL, 'Divorced', 'Ghati', 'fat', 'dark', '  ');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_member_qualification`
---
-
-CREATE TABLE `tbl_member_qualification` (
-  `Member_Qualification_ID` int(4) NOT NULL,
-  `Member_Detail_ID` int(4) NOT NULL,
-  `Member_Qualification` varchar(14) DEFAULT NULL,
-  `Member_Work_With` varchar(14) DEFAULT NULL,
-  `Member_Occupation` varchar(25) DEFAULT NULL,
-  `Member_Designation` varchar(16) DEFAULT NULL,
-  `Member_Company_Name` varchar(150) DEFAULT NULL,
-  `Member_Income` int(11) DEFAULT NULL,
-  `Member_Description` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_member_qualification`
---
-
-INSERT INTO `tbl_member_qualification` (`Member_Qualification_ID`, `Member_Detail_ID`, `Member_Qualification`, `Member_Work_With`, `Member_Occupation`, `Member_Designation`, `Member_Company_Name`, `Member_Income`, `Member_Description`) VALUES
-(7, 9, 'BCA', 'government', 'Doctor', 'Job', 'abc', 50000, 'I am outgoing, dedicated, and open-minded. I get across to people and adjust to changes with ease.'),
-(16, 540, 'BBA', 'Government', 'Clerk', 'Job', 'iuadv iaspib', 75000, 'I am outgoing, dedicated, and open-minded. I get across to people and adjust to changes with ease.'),
-(25, 550, 'M.com', 'Private', 'Teacher', 'Job', 'Company', 180000, 'About Me...........'),
-(26, 551, 'B.B.A', 'Private', 'Doctor', 'Clerk', 'opqe;lvmoj', 250000, 'I am a boy..............'),
-(27, 552, 'M.com', 'Government', 'Mamager', 'Clerk', 'up state', 180000, 'i am sonu mehta'),
-(33, 559, 'B.C.A', 'Government', 'Teacher', 'Admin', 'xyz', 200000, 'I am outgoing, dedicated, and open-minded. I get across to people and adjust to changes with ease.'),
-(35, 564, 'B.B.A', 'Government', 'Bussiness', 'Admin', 'abcd', 1234567, 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised'),
-(37, 565, 'B.com', 'Private', 'Teacher', 'HR', 'google', 20000, 'i will try to my best '),
-(40, 570, 'B.A', 'Self Employee', 'Social Worker', 'Other', '', 123456, 'ybswvlwrpv wvkwnhepc;mc;wevewcnwelkcnwe'),
-(41, 571, 'B.com', 'Government', 'Librarian', 'Other', 'abcdhhh co. ltd.', 6547989, 'I have 2.5 years of Exp. in my career.'),
-(42, 572, 'B.A', 'Private', 'Bussiness', 'Financer', 'abcdefg co.Ltd', 123321, 'I have 5 years of Exp. in my career.'),
-(43, 573, 'M.B.A', 'Private', 'Doctor', 'Admin', 'Aadhri hospital', 300000, 'I am a doctor. I have 10 years of experience. I had completed my MBA.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_package`
---
-
-CREATE TABLE `tbl_package` (
-  `Package_ID` int(4) NOT NULL,
-  `Package_Name` varchar(20) NOT NULL,
-  `Package_Price` int(10) NOT NULL,
-  `Package_Duration` varchar(20) NOT NULL,
-  `Package_Status` enum('1','0') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_package`
---
-
-INSERT INTO `tbl_package` (`Package_ID`, `Package_Name`, `Package_Price`, `Package_Duration`, `Package_Status`) VALUES
-(1, 'Silver', 899, '3', '1'),
-(2, 'Gold', 1599, '4', '1'),
-(19, 'platinum', 50000, '4', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_package_detail`
---
-
-CREATE TABLE `tbl_package_detail` (
-  `Package_Detail_ID` int(4) NOT NULL,
-  `Package_ID` int(4) NOT NULL,
-  `Member_ID` int(11) NOT NULL,
-  `Purchase_Date` date NOT NULL,
-  `Package_Exp_Date` date NOT NULL,
-  `Package_Detail_Status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_package_detail`
---
-
-INSERT INTO `tbl_package_detail` (`Package_Detail_ID`, `Package_ID`, `Member_ID`, `Purchase_Date`, `Package_Exp_Date`, `Package_Detail_Status`) VALUES
-(6, 1, 174, '2021-06-06', '2025-12-06', 1),
-(7, 19, 170, '2021-06-06', '2021-12-06', 1),
-(8, 1, 168, '2021-06-09', '2021-12-09', 1),
-(9, 2, 184, '2021-06-11', '2021-10-11', 1),
-(10, 1, 103, '2021-06-25', '2021-08-25', 1),
-(11, 1, 195, '2021-06-25', '2021-08-25', 1),
-(12, 1, 196, '2021-06-26', '2021-08-26', 1),
-(13, 1, 162, '2021-06-26', '2021-08-26', 1),
-(14, 19, 164, '2022-07-06', '2025-02-28', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_send_request`
---
-
-CREATE TABLE `tbl_send_request` (
-  `Request_ID` int(4) NOT NULL,
-  `Member_ID` int(4) NOT NULL,
-  `Send_Request_ID` varchar(60) NOT NULL,
-  `Request_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_send_request`
---
-
-INSERT INTO `tbl_send_request` (`Request_ID`, `Member_ID`, `Send_Request_ID`, `Request_date`) VALUES
-(7, 103, '161', '2021-06-04'),
-(8, 103, '162,168', '2021-06-04'),
-(9, 162, '161,162', '2021-06-04'),
-(10, 162, '161,162,166,168', '2021-06-04'),
-(11, 169, '167', '2021-06-06'),
-(14, 170, '168,169', '2021-06-06'),
-(15, 172, '161,162,166,168,169', '2021-06-06'),
-(16, 172, '161,162,166,168,169,173', '2021-06-07'),
-(17, 172, '161,162,166,168,169,173', '2021-06-07'),
-(23, 180, '162,169', '2021-06-08'),
-(24, 182, '103,164,165,167,170,172,174,180', '2021-06-09'),
-(25, 184, '165,170,172,174,180', '2021-06-11'),
-(26, 174, '162,166,169,173,184', '2021-06-15'),
-(28, 188, '161,162,166,168,169,173,178,182', '2021-06-19'),
-(30, 193, '103,164,165,167,170,172,174,180,188', '2021-06-25'),
-(31, 194, '161,162,166,168,169,173,178,182,189,193', '2021-06-25'),
-(32, 195, '161,162,166,168,169,173,178,182,189,193', '2021-06-25'),
-(33, 196, '103,164,165,170,172,174,180,188,194,195', '2021-06-26');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_state`
---
-
-CREATE TABLE `tbl_state` (
-  `State_ID` int(4) NOT NULL,
-  `State_Name` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_state`
---
-
-INSERT INTO `tbl_state` (`State_ID`, `State_Name`) VALUES
-(1, 'Andhra Pradesh'),
-(7, 'Assam'),
-(8, 'Bihar'),
-(9, 'Goa'),
-(2, 'Gujarat'),
-(49, 'gujrat'),
-(10, 'Haryana'),
-(3, 'Jammu and Kashmir'),
-(11, 'Jharkhand'),
-(12, 'Kerala'),
-(4, 'Madhya Pradesh'),
-(13, 'Maharashtra'),
-(5, 'Punjab'),
-(6, 'Tamil Nadu'),
-(14, 'Uttarakhand'),
-(48, 'vapi'),
-(15, 'West Bengal');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_sub_community`
---
-
-CREATE TABLE `tbl_sub_community` (
-  `Sub_Community_ID` int(4) NOT NULL,
-  `Community_ID` int(4) NOT NULL,
-  `Sub_Community_Name` varchar(20) NOT NULL,
-  `Sub_Community_Status` enum('1','0') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_sub_community`
---
-
-INSERT INTO `tbl_sub_community` (`Sub_Community_ID`, `Community_ID`, `Sub_Community_Name`, `Sub_Community_Status`) VALUES
-(20, 82, 'Rajput', '1'),
-(23, 85, 'Chauhan', '1'),
-(24, 85, 'Rathod', '1'),
-(25, 85, 'Rajput', '1'),
-(26, 85, 'Solanki', '1'),
-(27, 85, 'Parmar', '1'),
-(29, 82, 'Bhati', '1'),
-(30, 82, 'Baurai', '1'),
-(32, 82, 'Bansal', '1'),
-(35, 81, 'Ambekar', '1'),
-(36, 81, 'Ankalikar', '1'),
-(37, 81, 'Arondekar', '1'),
-(38, 81, 'Apte', '1'),
-(39, 85, 'Chowdhury', '1'),
-(41, 85, 'Ambani', '1'),
-(42, 85, 'Ambekar', '1'),
-(45, 93, 'Anand', '1'),
-(47, 93, 'Arora', '1'),
-(48, 93, 'Atwal', '1'),
-(49, 93, 'Bindra', '1'),
-(50, 93, 'Chawla', '1'),
-(51, 91, 'Adiga', '1'),
-(52, 91, 'Aithal', '1'),
-(53, 91, 'Akkur', '1'),
-(54, 91, 'Anna', '1'),
-(55, 91, 'Dasar', '1'),
-(56, 91, 'Dixit', '1'),
-(57, 91, 'Dundur', '1'),
-(65, 81, 'ahire', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_testimonial`
---
-
-CREATE TABLE `tbl_testimonial` (
-  `Testimonial_ID` int(4) NOT NULL,
-  `Member_ID` int(4) NOT NULL,
-  `Testmonial_Date` date NOT NULL,
-  `Member_Contact` bigint(11) NOT NULL,
-  `Testimonial_Description` text NOT NULL,
-  `Testimonial_Status` enum('1','0') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data for table `tbl_testimonial`
---
-
-INSERT INTO `tbl_testimonial` (`Testimonial_ID`, `Member_ID`, `Testmonial_Date`, `Member_Contact`, `Testimonial_Description`, `Testimonial_Status`) VALUES
-(2, 103, '2021-01-01', 0, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', '1'),
-(4, 169, '2021-06-30', 0, 'The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps.', '1'),
-(5, 161, '2021-05-03', 0, 'The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps', '1'),
-(6, 164, '2021-05-18', 0, 'The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox ', '1'),
-(7, 103, '2021-06-12', 987754, 'hello', '1'),
-(8, 168, '2021-06-12', 9874563210, 'hello, this site is amazing and i got my perfect partner over this site so I belive this is an perfect site for perfect life partner. peace out.', '1');
+INSERT INTO `testimonial_tbl` (`testimonial_id`, `member_id`, `testimonial_date`, `member_contact`, `testimonial_description`, `testimonial_status`) VALUES
+(1, 39, '2025-03-18', 7990212140, 'I Love your website', '1'),
+(2, 40, '2025-02-10', 9913673607, 'Finally,I find my Patner ', '1'),
+(4, 42, '2023-11-24', 9825361316, 'I Love this,Finally I\'m Married', '1');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin_tbl`
+--
+ALTER TABLE `admin_tbl`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `admin_email` (`admin_email`);
 
 --
 -- Indexes for table `chat_message`
@@ -988,321 +553,290 @@ ALTER TABLE `chat_message`
   ADD PRIMARY KEY (`chat_message_id`);
 
 --
--- Indexes for table `cities`
+-- Indexes for table `city_tbl`
 --
-ALTER TABLE `cities`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `city_tbl`
+  ADD PRIMARY KEY (`city_id`),
+  ADD UNIQUE KEY `city_name` (`city_name`),
+  ADD KEY `state_id` (`state_id`);
+
+--
+-- Indexes for table `community_tbl`
+--
+ALTER TABLE `community_tbl`
+  ADD PRIMARY KEY (`community_id`),
+  ADD UNIQUE KEY `community_name` (`community_name`);
+
+--
+-- Indexes for table `faq_tbl`
+--
+ALTER TABLE `faq_tbl`
+  ADD PRIMARY KEY (`faq_id`);
+
+--
+-- Indexes for table `lifestyle_tbl`
+--
+ALTER TABLE `lifestyle_tbl`
+  ADD PRIMARY KEY (`lifestyle_id`),
+  ADD KEY `member_detail_id` (`member_detail_id`);
 
 --
 -- Indexes for table `login_details`
 --
 ALTER TABLE `login_details`
-  ADD PRIMARY KEY (`login_details_id`);
+  ADD PRIMARY KEY (`login_details_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `otp_status`
+-- Indexes for table `member_detail_tbl`
 --
-ALTER TABLE `otp_status`
+ALTER TABLE `member_detail_tbl`
+  ADD PRIMARY KEY (`member_detail_id`),
+  ADD KEY `member_id` (`member_id`),
+  ADD KEY `member_sub_community_id` (`member_sub_community_id`);
+
+--
+-- Indexes for table `member_qualification_tbl`
+--
+ALTER TABLE `member_qualification_tbl`
+  ADD PRIMARY KEY (`member_qualification_id`),
+  ADD KEY `member_detail_id` (`member_detail_id`);
+
+--
+-- Indexes for table `member_tbl`
+--
+ALTER TABLE `member_tbl`
+  ADD PRIMARY KEY (`member_id`),
+  ADD UNIQUE KEY `member_email` (`member_email`),
+  ADD KEY `member_image` (`member_image`),
+  ADD KEY `member_city` (`member_city`);
+
+--
+-- Indexes for table `otp_status_tbl`
+--
+ALTER TABLE `otp_status_tbl`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `states`
+-- Indexes for table `package_detail_tbl`
 --
-ALTER TABLE `states`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `package_detail_tbl`
+  ADD PRIMARY KEY (`package_detail_id`),
+  ADD KEY `package_id` (`package_id`),
+  ADD KEY `member_id` (`member_id`);
 
 --
--- Indexes for table `tbl_admin`
+-- Indexes for table `package_tbl`
 --
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`Admin_ID`),
-  ADD UNIQUE KEY `Admin_Email` (`Admin_Email`);
+ALTER TABLE `package_tbl`
+  ADD PRIMARY KEY (`package_id`),
+  ADD UNIQUE KEY `package_name` (`package_name`);
 
 --
--- Indexes for table `tbl_city`
+-- Indexes for table `payment_tbl`
 --
-ALTER TABLE `tbl_city`
-  ADD PRIMARY KEY (`City_ID`),
-  ADD UNIQUE KEY `City_Name` (`City_Name`),
-  ADD KEY `fk` (`State_ID`);
+ALTER TABLE `payment_tbl`
+  ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indexes for table `tbl_community`
+-- Indexes for table `send_request_tbl`
 --
-ALTER TABLE `tbl_community`
-  ADD PRIMARY KEY (`Community_ID`),
-  ADD UNIQUE KEY `Community_Name` (`Community_Name`);
+ALTER TABLE `send_request_tbl`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `member_id` (`member_id`);
 
 --
--- Indexes for table `tbl_faq`
+-- Indexes for table `state_tbl`
 --
-ALTER TABLE `tbl_faq`
-  ADD PRIMARY KEY (`Faq_ID`);
+ALTER TABLE `state_tbl`
+  ADD PRIMARY KEY (`state_id`),
+  ADD UNIQUE KEY `state_name` (`state_name`);
 
 --
--- Indexes for table `tbl_language`
+-- Indexes for table `sub_community_tbl`
 --
-ALTER TABLE `tbl_language`
-  ADD PRIMARY KEY (`Language_ID`),
-  ADD UNIQUE KEY `Language` (`Language`);
+ALTER TABLE `sub_community_tbl`
+  ADD PRIMARY KEY (`sub_community_id`),
+  ADD KEY `community_id` (`community_id`);
 
 --
--- Indexes for table `tbl_lifestyle`
+-- Indexes for table `testimonial_tbl`
 --
-ALTER TABLE `tbl_lifestyle`
-  ADD PRIMARY KEY (`Lifestyle_ID`),
-  ADD KEY `Member_Detail_ID` (`Member_Detail_ID`);
-
---
--- Indexes for table `tbl_member`
---
-ALTER TABLE `tbl_member`
-  ADD PRIMARY KEY (`Member_ID`),
-  ADD UNIQUE KEY `Member_Email` (`Member_Email`),
-  ADD KEY `fk_city` (`Member_City`);
-
---
--- Indexes for table `tbl_member_detail`
---
-ALTER TABLE `tbl_member_detail`
-  ADD PRIMARY KEY (`Member_Detail_ID`),
-  ADD KEY `Member_ID` (`Member_ID`),
-  ADD KEY `Member_ID_2` (`Member_ID`),
-  ADD KEY `sub_Community` (`Member_Sub_Community_ID`),
-  ADD KEY `Language_ID` (`Language_ID`);
-
---
--- Indexes for table `tbl_member_qualification`
---
-ALTER TABLE `tbl_member_qualification`
-  ADD PRIMARY KEY (`Member_Qualification_ID`),
-  ADD KEY `Member_Detail_ID` (`Member_Detail_ID`);
-
---
--- Indexes for table `tbl_package`
---
-ALTER TABLE `tbl_package`
-  ADD PRIMARY KEY (`Package_ID`),
-  ADD UNIQUE KEY `Package_Name` (`Package_Name`);
-
---
--- Indexes for table `tbl_package_detail`
---
-ALTER TABLE `tbl_package_detail`
-  ADD PRIMARY KEY (`Package_Detail_ID`),
-  ADD KEY `Package_ID` (`Package_ID`);
-
---
--- Indexes for table `tbl_send_request`
---
-ALTER TABLE `tbl_send_request`
-  ADD PRIMARY KEY (`Request_ID`),
-  ADD KEY `Member_ID` (`Member_ID`);
-
---
--- Indexes for table `tbl_state`
---
-ALTER TABLE `tbl_state`
-  ADD PRIMARY KEY (`State_ID`),
-  ADD UNIQUE KEY `State_Name` (`State_Name`);
-
---
--- Indexes for table `tbl_sub_community`
---
-ALTER TABLE `tbl_sub_community`
-  ADD PRIMARY KEY (`Sub_Community_ID`),
-  ADD KEY `Community_ID` (`Community_ID`);
-
---
--- Indexes for table `tbl_testimonial`
---
-ALTER TABLE `tbl_testimonial`
-  ADD PRIMARY KEY (`Testimonial_ID`),
-  ADD KEY `Member_ID` (`Member_ID`);
+ALTER TABLE `testimonial_tbl`
+  ADD PRIMARY KEY (`testimonial_id`),
+  ADD KEY `member_id` (`member_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `admin_tbl`
+--
+ALTER TABLE `admin_tbl`
+  MODIFY `admin_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `chat_message`
 --
 ALTER TABLE `chat_message`
-  MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `chat_message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `cities`
+-- AUTO_INCREMENT for table `city_tbl`
 --
-ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48358;
+ALTER TABLE `city_tbl`
+  MODIFY `city_id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `community_tbl`
+--
+ALTER TABLE `community_tbl`
+  MODIFY `community_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `faq_tbl`
+--
+ALTER TABLE `faq_tbl`
+  MODIFY `faq_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `lifestyle_tbl`
+--
+ALTER TABLE `lifestyle_tbl`
+  MODIFY `lifestyle_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `login_details`
 --
 ALTER TABLE `login_details`
-  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `login_details_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- AUTO_INCREMENT for table `otp_status`
+-- AUTO_INCREMENT for table `member_detail_tbl`
 --
-ALTER TABLE `otp_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+ALTER TABLE `member_detail_tbl`
+  MODIFY `member_detail_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
--- AUTO_INCREMENT for table `states`
+-- AUTO_INCREMENT for table `member_qualification_tbl`
 --
-ALTER TABLE `states`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+ALTER TABLE `member_qualification_tbl`
+  MODIFY `member_qualification_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `tbl_admin`
+-- AUTO_INCREMENT for table `member_tbl`
 --
-ALTER TABLE `tbl_admin`
-  MODIFY `Admin_ID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `member_tbl`
+  MODIFY `member_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT for table `tbl_city`
+-- AUTO_INCREMENT for table `otp_status_tbl`
 --
-ALTER TABLE `tbl_city`
-  MODIFY `City_ID` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+ALTER TABLE `otp_status_tbl`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `tbl_community`
+-- AUTO_INCREMENT for table `package_detail_tbl`
 --
-ALTER TABLE `tbl_community`
-  MODIFY `Community_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+ALTER TABLE `package_detail_tbl`
+  MODIFY `package_detail_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `tbl_faq`
+-- AUTO_INCREMENT for table `package_tbl`
 --
-ALTER TABLE `tbl_faq`
-  MODIFY `Faq_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+ALTER TABLE `package_tbl`
+  MODIFY `package_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `tbl_language`
+-- AUTO_INCREMENT for table `payment_tbl`
 --
-ALTER TABLE `tbl_language`
-  MODIFY `Language_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+ALTER TABLE `payment_tbl`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `tbl_lifestyle`
+-- AUTO_INCREMENT for table `send_request_tbl`
 --
-ALTER TABLE `tbl_lifestyle`
-  MODIFY `Lifestyle_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+ALTER TABLE `send_request_tbl`
+  MODIFY `request_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
--- AUTO_INCREMENT for table `tbl_member`
+-- AUTO_INCREMENT for table `state_tbl`
 --
-ALTER TABLE `tbl_member`
-  MODIFY `Member_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=197;
+ALTER TABLE `state_tbl`
+  MODIFY `state_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `tbl_member_detail`
+-- AUTO_INCREMENT for table `sub_community_tbl`
 --
-ALTER TABLE `tbl_member_detail`
-  MODIFY `Member_Detail_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=574;
+ALTER TABLE `sub_community_tbl`
+  MODIFY `sub_community_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `tbl_member_qualification`
+-- AUTO_INCREMENT for table `testimonial_tbl`
 --
-ALTER TABLE `tbl_member_qualification`
-  MODIFY `Member_Qualification_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
---
--- AUTO_INCREMENT for table `tbl_package`
---
-ALTER TABLE `tbl_package`
-  MODIFY `Package_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- AUTO_INCREMENT for table `tbl_package_detail`
---
-ALTER TABLE `tbl_package_detail`
-  MODIFY `Package_Detail_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `tbl_send_request`
---
-ALTER TABLE `tbl_send_request`
-  MODIFY `Request_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT for table `tbl_state`
---
-ALTER TABLE `tbl_state`
-  MODIFY `State_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- AUTO_INCREMENT for table `tbl_sub_community`
---
-ALTER TABLE `tbl_sub_community`
-  MODIFY `Sub_Community_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
-
---
--- AUTO_INCREMENT for table `tbl_testimonial`
---
-ALTER TABLE `tbl_testimonial`
-  MODIFY `Testimonial_ID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `testimonial_tbl`
+  MODIFY `testimonial_id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `tbl_city`
+-- Constraints for table `city_tbl`
 --
-ALTER TABLE `tbl_city`
-  ADD CONSTRAINT `tbl_city_ibfk_1` FOREIGN KEY (`State_ID`) REFERENCES `tbl_state` (`State_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `city_tbl`
+  ADD CONSTRAINT `city_tbl_ibfk_1` FOREIGN KEY (`state_id`) REFERENCES `state_tbl` (`state_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_lifestyle`
+-- Constraints for table `lifestyle_tbl`
 --
-ALTER TABLE `tbl_lifestyle`
-  ADD CONSTRAINT `tbl_lifestyle_ibfk_1` FOREIGN KEY (`Member_Detail_ID`) REFERENCES `tbl_member_detail` (`Member_Detail_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `lifestyle_tbl`
+  ADD CONSTRAINT `lifestyle_tbl_ibfk_1` FOREIGN KEY (`member_detail_id`) REFERENCES `member_detail_tbl` (`member_detail_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_member`
+-- Constraints for table `member_detail_tbl`
 --
-ALTER TABLE `tbl_member`
-  ADD CONSTRAINT `tbl_member_ibfk_1` FOREIGN KEY (`Member_City`) REFERENCES `tbl_city` (`City_ID`);
+ALTER TABLE `member_detail_tbl`
+  ADD CONSTRAINT `member_detail_tbl_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `member_detail_tbl_ibfk_2` FOREIGN KEY (`member_sub_community_id`) REFERENCES `sub_community_tbl` (`sub_community_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_member_detail`
+-- Constraints for table `member_qualification_tbl`
 --
-ALTER TABLE `tbl_member_detail`
-  ADD CONSTRAINT `fk` FOREIGN KEY (`Member_Sub_Community_ID`) REFERENCES `tbl_sub_community` (`Sub_Community_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_member_detail_ibfk_1` FOREIGN KEY (`Member_ID`) REFERENCES `tbl_member` (`Member_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_member_detail_ibfk_2` FOREIGN KEY (`Language_ID`) REFERENCES `tbl_language` (`Language_ID`);
+ALTER TABLE `member_qualification_tbl`
+  ADD CONSTRAINT `member_qualification_tbl_ibfk_1` FOREIGN KEY (`member_detail_id`) REFERENCES `member_detail_tbl` (`member_detail_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_member_qualification`
+-- Constraints for table `member_tbl`
 --
-ALTER TABLE `tbl_member_qualification`
-  ADD CONSTRAINT `tbl_member_qualification_ibfk_1` FOREIGN KEY (`Member_Detail_ID`) REFERENCES `tbl_member_detail` (`Member_Detail_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `member_tbl`
+  ADD CONSTRAINT `member_tbl_ibfk_1` FOREIGN KEY (`member_city`) REFERENCES `city_tbl` (`city_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_package_detail`
+-- Constraints for table `package_detail_tbl`
 --
-ALTER TABLE `tbl_package_detail`
-  ADD CONSTRAINT `tbl_package_detail_ibfk_1` FOREIGN KEY (`Package_ID`) REFERENCES `tbl_package` (`Package_ID`);
+ALTER TABLE `package_detail_tbl`
+  ADD CONSTRAINT `package_detail_tbl_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `package_tbl` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `package_detail_tbl_ibfk_2` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_send_request`
+-- Constraints for table `send_request_tbl`
 --
-ALTER TABLE `tbl_send_request`
-  ADD CONSTRAINT `tbl_send_request_ibfk_1` FOREIGN KEY (`Member_ID`) REFERENCES `tbl_member` (`Member_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `send_request_tbl`
+  ADD CONSTRAINT `send_request_tbl_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_sub_community`
+-- Constraints for table `sub_community_tbl`
 --
-ALTER TABLE `tbl_sub_community`
-  ADD CONSTRAINT `tbl_sub_community_ibfk_1` FOREIGN KEY (`Community_ID`) REFERENCES `tbl_community` (`Community_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `sub_community_tbl`
+  ADD CONSTRAINT `sub_community_tbl_ibfk_1` FOREIGN KEY (`community_id`) REFERENCES `community_tbl` (`community_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_testimonial`
+-- Constraints for table `testimonial_tbl`
 --
-ALTER TABLE `tbl_testimonial`
-  ADD CONSTRAINT `tbl_testimonial_ibfk_1` FOREIGN KEY (`Member_ID`) REFERENCES `tbl_member` (`Member_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `testimonial_tbl`
+  ADD CONSTRAINT `testimonial_tbl_ibfk_1` FOREIGN KEY (`member_id`) REFERENCES `member_tbl` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
