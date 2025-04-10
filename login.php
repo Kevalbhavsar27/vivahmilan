@@ -1,87 +1,91 @@
-<?php 
-	include_once 'connection.php';
-	
-	if(isset($_POST['btnSubmit']))
-	{
-		$str="select * from member_tbl where member_email='".$_POST['email']."' and member_password='".$_POST['passwd']."' and member_status=1";	
-		$str2="select * from member_tbl where member_status='0'";
-		$result2=mysqli_query($conn,$str2);
-		$count2=mysqli_num_rows($result2);
-		$result=mysqli_query($conn,$str);
-		$data=mysqli_fetch_array($result);
-		$count=mysqli_num_rows($result);
-		//echo $str2;
-		
-		if($count>0)
-		{
-			$_SESSION["user_fname"]=$data['member_firstname'];
-			$_SESSION["user_lname"]=$data['member_lastname'];
-			$_SESSION["user_Email"]=$data['member_email'];
-			$_SESSION["user_profile"]=$data['member_image'];
-			$_SESSION["user_id"]=$data['member_id'];
-			$_SESSION["member_gender"]=$data['member_gender'];
-			$_SESSION["member_id"]=$data['member_id'];
-			$looking_for=$data['member_looking_for']=="Male"?"Female":"Male";
-			$_SESSION['member_looking_for']=$looking_for;
-			
-			$M_ID=$_SESSION['member_id'];
-			
-			$sub_query = "INSERT INTO login_details (user_id) VALUES ('".$_SESSION['member_id']."')";
-			$statement=mysqli_query($conn,$sub_query);
-			$last_id=mysqli_insert_id($conn);
-			//$statement = $conn->prepare($sub_query);
-			//$statement->execute();
-			$_SESSION['login_details_id'] = $last_id;
-			
-			$member_id = $_SESSION['member_id']; // Make sure this is already set during login
+<?php
+include_once 'connection.php';
 
-			// Update package status to 0 if today is the expiry date for the logged-in member
-			$sql = "UPDATE package_detail_tbl SET package_detail_status = 0 WHERE member_id = '$member_id' AND package_exp_date = CURDATE()";
-			$data=mysqli_query($conn, $sql);
-			$total=mysqli_num_rows($data);
-			//echo $total;die;
-			$_SESSION['cnt_member']=$total;
-			
-			$cnt="select * from package_detail_tbl where package_detail_status='1' and member_id=".$_SESSION['member_id'];
-			//echo $cnt;
-			$data=mysqli_query($conn,$cnt);
-			$total=mysqli_num_rows($data);
-			$_SESSION['cnt_member']=$total;
-			
-			if(isset($_POST['agree']))
-			{
-				setcookie("user_email",$_POST['email'],time()+(60*2));
-				setcookie("user_pass",$_POST['passwd'],time()+(60*2));
-			}
-			else
-			{
-				if(isset($_COOKIE["user_email"]))
-				{
-					setcookie("user_email","");
-				}
-				if(isset($_COOKIE["user_pass"]))
-				{
-					setcookie("user_pass","");
-				}
-			}
-			header('location:index.php');
-			
-		}
-		
-		else
-		{
-			if($count2>0)
-			{
-				$alert="<span style='color:red'>Your Profile is Denied By Admin</span>";
-			}
-			else
-			{
-				$alert="<span style='color:red'>Invalid Email or Password</span>";
-			}
-			
-		}
-	}	
+$alert = "";
+
+if (isset($_POST['btnSubmit'])) {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['passwd']);
+
+    // Prepared statement to fetch active user
+    $stmt = $conn->prepare("SELECT * FROM member_tbl WHERE member_email = ? AND member_password = ? AND member_status = 1");
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+    $count = $result->num_rows;
+    $stmt->close();
+
+    if ($count > 0) {
+        // Set user session variables
+        $_SESSION["user_fname"] = $user['member_firstname'];
+        $_SESSION["user_lname"] = $user['member_lastname'];
+        $_SESSION["user_Email"] = $user['member_email'];
+        $_SESSION["user_profile"] = $user['member_image'];
+        $_SESSION["user_id"] = $user['member_id'];
+        $_SESSION["member_gender"] = $user['member_gender'];
+        $_SESSION["member_id"] = $user['member_id'];
+
+        // Set looking for based on user's gender
+        $looking_for = ($user['member_looking_for'] == "Male") ? "Female" : "Male";
+        $_SESSION['member_looking_for'] = $looking_for;
+
+        $member_id = $_SESSION['member_id'];
+
+        // Insert login detail
+        $stmt = $conn->prepare("INSERT INTO login_details (user_id) VALUES (?)");
+        $stmt->bind_param("i", $member_id);
+        $stmt->execute();
+        $_SESSION['login_details_id'] = $stmt->insert_id;
+        $stmt->close();
+
+        // Update package status if expiry is today
+        $stmt = $conn->prepare("UPDATE package_detail_tbl SET package_detail_status = 0 WHERE member_id = ? AND package_exp_date = CURDATE()");
+        $stmt->bind_param("i", $member_id);
+        $stmt->execute();
+        $stmt->close();
+
+        // Check for active packages
+        $stmt = $conn->prepare("SELECT * FROM package_detail_tbl WHERE package_detail_status = 1 AND member_id = ?");
+        $stmt->bind_param("i", $member_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $_SESSION['cnt_member'] = $result->num_rows;
+        $stmt->close();
+
+        // Handle "remember me" cookies
+        if (isset($_POST['agree'])) {
+            setcookie("user_email", $email, time() + (60 * 2));
+            setcookie("user_pass", $password, time() + (60 * 2));
+        } else {
+            setcookie("user_email", "", time() - 3600);
+            setcookie("user_pass", "", time() - 3600);
+        }
+
+        // Redirect to homepage
+        header('Location: index.php');
+        exit;
+    } else {
+        // Check if user is denied
+        $stmt = $conn->prepare("SELECT * FROM member_tbl WHERE member_email = ? AND member_status = 0");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->store_result();
+
+        if ($stmt->num_rows > 0) {
+            $alert = "<span style='color:red'>Your Profile is Denied By Admin</span>";
+        } else {
+            $alert = "<span style='color:red'>Invalid Email or Password</span>";
+        }
+
+        $stmt->close();
+    }
+}
 ?>
+
+<!-- HTML form part (if needed) -->
+<?php if (!empty($alert)) echo $alert; ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -167,7 +171,7 @@
                             <div>
                                 <div class="form-tit">
 								   
-                                    <h1>Sign in to Matrimony</h1>
+                                    <h1>Sign in to Vivah Milan</h1>
                                     <p>Not a member? <a href="sign_up.php">Sign up now</a></p>
 									 <div><?php if(isset($alert)){echo $alert;}?></div>
                                 </div>
